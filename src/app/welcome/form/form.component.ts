@@ -15,13 +15,12 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   onSubmit(form:NgForm){
     
   }
   
   onSwitch(){
-    
- 
     this.login=!this.login;
   }
 
