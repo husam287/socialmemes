@@ -1,0 +1,22 @@
+<!--################# Left Cards #################-->
+<div class="mb-4  position-relative whole-card" *ngIf="slide==='left'" data-aos="slide-left" data-aos-delay="300">
+  <div class="card border-red-light" style="height: 80vh;">
+    <h5 class="card-header text-center bg-pink-light">{{feature.header}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{feature.title}}</h5>
+      <p class="card-text">{{feature.text}}</p>
+      <img [src]="feature.image" class="card-img-bottom rounded" [alt]="'feature-'+feature.header+'-photo'">
+    </div>
+  </div>
+</div>
+<!--################# Right Cards #################-->
+<div class="mb-4  position-relative whole-card" *ngIf="slide==='right'" data-aos="slide-right" data-aos-delay="300">
+  <div class="card border-red-light" style="height: 80vh;">
+    <h5 class="card-header text-center bg-pink-light">{{feature.header}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{feature.title}}</h5>
+      <p class="card-text">{{feature.text}}</p>
+      <img [src]="feature.image" class="card-img-bottom rounded" [alt]="'feature-'+feature.header+'-photo'">
+    </div>
+  </div>
+</div>

@@ -22,8 +22,8 @@ red-light-color: #c36a52
 
 .vertical-center{
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 50% ;
+    transform: translateY(-50%) ; 
 }
 
 .bg-pink-light{
@@ -53,4 +53,9 @@ red-light-color: #c36a52
 }
 .color-red-light{
     color: #c36a52;
+}
+
+.border-red-light{
+    border: #b4583f solid 1px;
+    
 }

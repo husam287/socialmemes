@@ -1,0 +1,49 @@
+<header class="my-5 pt-5">
+    <div class="container">
+        <div class="row">
+
+            <!--################### Descreption ###################-->
+            <div class="col-sm-6 col-12">
+                <div class="position-relative">
+                    <img class="rounded-circle" src="assets/photos/logo.png" alt="socialmedia-logo" width="70px"
+                        height="70px">
+                    <h2 class=" ml-3 my-0 align-middle d-inline-block" data-aos="fade-right">social media website</h2>
+
+                </div>
+                <hr class="color-red-dark">
+                <p style="font-family: 'Indie Flower', cursive; font-weight: bolder;">
+                    'Social Media' website is for people who got bored with ordinary social media.
+                    Here there're only posts, fun, and memes.
+                    Feel free to create memes or posts and share it with not only your friends but with all the other
+                    users.
+                </p>
+            </div>
+
+            <!--################### Forms ###################-->
+            <div class="col-sm-6 col-12">
+                <app-form></app-form>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!--################### Feature section ###################-->
+
+<section class="mt-5 pt-5 bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto">
+                <h1 class="color-red-dark ">Why Social Media ?</h1>
+            </div>
+        </div>
+        <hr class="mb-5" data-aos="fade-up">
+
+        <!--Array of feature-->
+        <div class="row">
+            <app-feature class="col-sm-6 col-8 mx-auto" *ngFor="let feature of features; let i=index"
+                [feature]="feature" [slide]="i%2===0? 'right':'left'"></app-feature>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <h3 class="form-text text-center">{{login? 'Login':'Signup'}}</h3>
+
+    <!--Email input-->
+    <div class="form-group position-relative">
+        <span [ngClass]="spanHide[0]? 'd-none':''" class="small text-center text-muted mr-1">Email</span>
+        <input class="form-control" type="email" name="email" #email="ngModel" ngModel placeholder="Email"
+            onfocus="this.placeholder='';" onblur="this.placeholder='Email';" (focus)="spanHide[0]=!spanHide[0]"
+            (blur)="spanHide[0]=!spanHide[0]" required>
+    </div>
+
+    <!--Name input-->
+    <div *ngIf="!login" class="form-group position-relative">
+        <span [ngClass]="spanHide[1]? 'd-none':''" class="small text-center text-muted mr-1">Full
+            Name</span>
+        <input class="form-control" type="text" name="name" #name="ngModel" ngModel placeholder="Full Name"
+            onfocus="this.placeholder=''" onblur="this.placeholder='Full Name'" (focus)="spanHide[1]=!spanHide[1]"
+            (blur)="spanHide[1]=!spanHide[1]" required>
+    </div>
+
+    <!--Password fields-->
+    <div class="form-group position-relative">
+        <span [ngClass]="spanHide[2]? 'd-none':''" class="small text-center text-muted">Password</span>
+        <input class="form-control" type="password" name="password" #password="ngModel" ngModel placeholder="Password"
+            onfocus="this.placeholder=''" onblur="this.placeholder='Password'" (focus)="spanHide[2]=!spanHide[2]"
+            (blur)="spanHide[2]=!spanHide[2]" required>
+    </div>
+    <div *ngIf="!login" class="form-group position-relative">
+        <span [ngClass]="spanHide[3]? 'd-none':''" class="small text-center text-muted mr-1">Confirm
+            Password</span>
+        <input class="form-control" type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel
+            placeholder="Confirm Password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm Password'"
+            (focus)="spanHide[3]=!spanHide[3]" (blur)="spanHide[3]=!spanHide[3]" required>
+    </div>
+
+    <!-- Buttons-->
+    <button class="btn bg-red-dark btn-block text-light" type="submit">{{login? 'Log in':'Sign up'}}</button>
+    <button class="btn bg-pink-light btn-block" type="button"
+        (click)="onSwitch()">{{login? 'Switch to sign up':'Switch to log in'}}</button>
+</form>

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +10,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PostsComponent } from '../home/posts/posts.component';
 import { MemesComponent } from '../home/memes/memes.component';
 import { UsersComponent } from './users/users.component';
+import { FeatureComponent } from './welcome/feature/feature.component';
+import { FormComponent } from './welcome/form/form.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,17 @@ import { UsersComponent } from './users/users.component';
     WelcomeComponent,
     PostsComponent,
     MemesComponent,
-    UsersComponent
+    UsersComponent,
+    FeatureComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
