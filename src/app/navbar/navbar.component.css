@@ -1,0 +1,22 @@
+.dropdown-toggle::after {
+    display: none;
+   
+}
+li {
+    height: 100%;
+    
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #ecc8a0;
+}
+
+.color-pink-light{
+    padding:0.8rem;
+}
+.color-pink-light:hover,.color-pink-light:active,.color-pink-light:focus{
+    color:#e6b884;
+    background-color: rgba(0, 0, 0, 0.2);
+}

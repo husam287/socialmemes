@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+colors:
+
+
+pink-dark-color: #e6b884
+pink-light-color: #ecc8a0
+red-dark-color: #b4583f
+red-light-color: #c36a52
+
+
+
+*/
+
+
+
+*{
+    /*font-family: 'Indie Flower', cursive;*/
+    font-family: 'Staatliches', cursive;
+}
+
+.vertical-center{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bg-pink-light{
+    background-color:#ecc8a0 ;
+ 
+}
+.color-pink-light{
+    color:#ecc8a0;
+}
+.bg-pink-dark{
+    background-color:#e6b884 ;
+ 
+}
+.color-pink-dark{
+    color:#e6b884
+}
+.bg-red-dark{
+    
+    background-color: #b4583f ;
+}
+.color-red-dark{
+    color: #b4583f;
+}
+.bg-red-light{
+    
+    background-color: #c36a52 ;
+}
+.color-red-light{
+    color: #c36a52;
+}
