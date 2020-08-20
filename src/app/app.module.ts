@@ -12,6 +12,8 @@ import { MemesComponent } from '../home/memes/memes.component';
 import { UsersComponent } from './users/users.component';
 import { FeatureComponent } from './welcome/feature/feature.component';
 import { FormComponent } from './welcome/form/form.component';
+import { MakeAccoutComponent } from './welcome/make-accout/make-accout.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FormComponent } from './welcome/form/form.component';
     MemesComponent,
     UsersComponent,
     FeatureComponent,
-    FormComponent
+    FormComponent,
+    MakeAccoutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

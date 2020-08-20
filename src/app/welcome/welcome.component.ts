@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ViewportScroller } from '@angular/common';
 import { FeatureModel } from './feature.model';
@@ -10,6 +10,7 @@ import AOS from 'aos'
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+target:HTMLElement;
 features:FeatureModel[]=[
   {
     header:"Posts",
@@ -52,6 +53,8 @@ features:FeatureModel[]=[
     AOS.init({
       duration:1500,
     });
+    
+    this.target=document.getElementById('target')
   }
   
   
