@@ -7,16 +7,23 @@ li {
     
 }
 
+
 .dropdown-item:focus, .dropdown-item:hover {
     color: #16181b;
     text-decoration: none;
     background-color: #ecc8a0;
 }
 
-.color-pink-light{
+.color-pink-light i{
+    color:#ecc8a0 ;
     padding:0.8rem;
 }
-.color-pink-light:hover,.color-pink-light:active,.color-pink-light:focus{
-    color:#e6b884;
+.color-pink-light:active,.color-pink-light:hover,.color-pink-light:focus{
     background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+.routeActive{
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
 }

@@ -8,15 +8,15 @@
 		<ul class="navbar-nav mx-auto d-inline-block">
 					<!--Posts-->
 			<li class="nav-item my-auto d-inline-block mx-3">
-				<a class="nav-link" [routerLink]="['/home']"><i class="fas fa-newspaper fa-3x color-pink-light"><!--Home--></i></a>
+				<a class="nav-link color-pink-light" [routerLink]="['/home']" routerLinkActive="routeActive" [routerLinkActiveOptions]="{exact:true}"><i class="fas fa-newspaper fa-3x "><!--Home--></i></a>
 			</li>
 					<!--Memes-->
 			<li class="nav-item my-auto d-inline-block mx-3">
-				<a class="nav-link" [routerLink]="['/home','memes']"><i class="fas fa-grin-squint-tears fa-3x color-pink-light"></i><!--memes--></a>
+				<a class="nav-link color-pink-light" [routerLink]="['/home','memes']" routerLinkActive="routeActive"><i class="fas fa-grin-squint-tears fa-3x"></i><!--memes--></a>
 			</li>
 					<!--People-->
 			<li class="nav-item my-auto d-inline-block mx-3">
-				<a class="nav-link" href="#"><i class="fas fa-users fa-3x color-pink-light"></i><!--people--></a>
+				<a class="nav-link color-pink-light" [routerLink]="['/users']" routerLinkActive="routeActive"><i class="fas fa-users fa-3x"></i><!--people--></a>
 			</li>
 			
 		</ul>
