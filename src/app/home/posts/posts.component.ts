@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../../shared/posts.service'
+import { PostsService } from '../../shared/posts/posts.service'
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',

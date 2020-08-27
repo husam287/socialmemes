@@ -1,11 +1,11 @@
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-red-dark rounded">
-	<a class="navbar-brand position-relative mr-auto" href="#">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-red-dark rounded row">
+	<div class="navbar-brand position-relative col-6 col-md-2 text-left" href="#">
 		<img class="rounded-circle d-inline-block my-auto" src="assets/photos/logo.png" alt="socialmedia-logo" width="70px" height="70px">
 		<h3 class=" d-inline-block ml-2 my-0 vertical-center">Social Media</h3>
-	</a>
+	</div>
 	
-		<ul class="navbar-nav mx-auto d-inline-block">
+		<ul class="navbar-nav d-inline-block col-12 col-md-8 mx-auto pr-0 text-center customOrder">
 					<!--Posts-->
 			<li class="nav-item my-auto d-inline-block mx-3">
 				<a class="nav-link color-pink-light" [routerLink]="['/home']" routerLinkActive="routeActive" [routerLinkActiveOptions]="{exact:true}"><i class="fas fa-newspaper fa-3x "><!--Home--></i></a>
@@ -21,13 +21,15 @@
 			
 		</ul>
 				<!--profile management-->
-	  <ul class="navbar-nav ml-auto">
-		<li class="nav-item dropdown my-auto">
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<div><img class="mx-2" src="assets/photos/unknown.png" alt="user-photo" width="50px" height="50px"></div>
-			<div><span>User Name</span> <span><i class="fas fa-chevron-circle-down"></i></span></div>
+	  <ul class="navbar-nav col-4 col-md-2">
+		<li class="nav-item dropdown my-auto position-relative mx-auto">
+		  <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div>
+				<img src="assets/photos/unknown.png" alt="user-photo" width="50px" height="50px" class="d-block mx-auto">
+				<span>User Name</span> <span><i class="fas fa-chevron-circle-down"></i></span>
+			</div>
 		  </a>
-		  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+		  <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
 			<a class="dropdown-item" href="#">Profile</a>
 			<a class="dropdown-item" href="#">Setting</a>
 			<a class="dropdown-item" href="#">Logout</a>

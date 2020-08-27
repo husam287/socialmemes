@@ -15,7 +15,7 @@ features:FeatureModel[]=[
   {
     header:"Posts",
     title:"Almost the same of ordinary social media's posts",
-    text:"but it appears for all users not only your friends, So you can write or read posts from all users. Social media is perfectly open world",
+    text:"but it appears for all users not only your friends, So you can write or read posts from all users. Socialmemes is perfectly open world",
     image:"assets/photos/worldWide.png",
     
 

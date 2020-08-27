@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import { FormComponent } from './welcome/form/form.component';
 import { MakeAccoutComponent } from './welcome/make-accout/make-accout.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { AuthInterceptorService } from './shared/http.interceptor';
+import { UserComponent } from './users/user/user.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,8 @@ import { FooterComponent } from './footer/footer.component';
     FeatureComponent,
     FormComponent,
     MakeAccoutComponent,
-    FooterComponent
+    FooterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { FooterComponent } from './footer/footer.component';
     
     
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

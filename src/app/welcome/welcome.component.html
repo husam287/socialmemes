@@ -5,14 +5,14 @@
             <!--################### Descreption ###################-->
             <div class="col-sm-6 col-12">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="assets/photos/logo.png" alt="socialmedia-logo" width="70px"
+                    <img class="rounded-circle" src="assets/photos/logo.png" alt="socialmemes-logo" width="70px"
                         height="70px">
-                    <h2 class=" ml-3 my-0 align-middle d-inline-block" data-aos="fade-right">social media website</h2>
+                    <h2 class=" ml-3 my-0 align-middle d-inline-block sizeInMobile" data-aos="fade-right">socialmemes website</h2>
 
                 </div>
                 <hr class="color-red-dark">
                 <p class="normalText text-justify">
-                    'Social Media' website is for people who got bored with ordinary social media.
+                    'Socialmemes' website is for people who got bored with ordinary social media.
                     Here there're only posts, fun, and memes.
                     Feel free to create memes or posts and share it with not only your friends but with all the other
                     users.
@@ -35,14 +35,14 @@
     <div class="container">
         <div class="row">
             <div class="mx-auto">
-                <h1 class="color-red-dark ">Why Social Media ?</h1>
+                <h1 class="color-red-dark ">Why Socialmemes ?</h1>
             </div>
         </div>
         <hr class="mb-5" data-aos="fade-up">
 
         <!--Array of feature-->
         <div class="row">
-            <app-feature class="col-sm-6 col-8 mx-auto" *ngFor="let feature of features; let i=index"
+            <app-feature class="col-sm-6 col-12 mx-auto" *ngFor="let feature of features; let i=index"
                 [feature]="feature" [slide]="i%2===0? 'right':'left'"></app-feature>
         </div>
     </div>
@@ -58,6 +58,6 @@
 
 
 <!--################### Footer ###################-->
-<footer class="mt-5 bg-red-dark">
+<footer class="mt-5 bg-red-dark h-100">
     <app-footer></app-footer>
 </footer>
