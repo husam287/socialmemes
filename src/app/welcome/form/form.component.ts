@@ -23,12 +23,7 @@ export class FormComponent implements OnInit {
     const confirm=form.value.confirmPassword;
     if(this.login){
       this.auth.logIn(email,password)
-      .subscribe(result=>{
-        console.log(result);
-        this.auth.user.subscribe(result=>{
-          console.log(result);
-        })
-      },
+      .subscribe(result=>{},
       err=>{
         console.log(err);
       })

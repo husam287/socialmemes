@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, Event } from '@angular/router';
+import { UsersService } from './shared/users/users.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Router, NavigationStart, Event } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'socialmedia';
   url:string;
-  constructor(private router: Router) { }
+  constructor(private router: Router,private user:UsersService) { }
 
   ngOnInit() {
     this.router.events
@@ -20,6 +21,10 @@ export class AppComponent implements OnInit {
 
           }
         });
+
+        this.user.autoLogIn();
+    
+        
   }
 
 

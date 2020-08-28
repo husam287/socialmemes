@@ -7,22 +7,23 @@ import { exhaustMap, take } from 'rxjs/operators';
 
 
 @Injectable()
-export class AuthInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor {
 
-    constructor(private authService:UsersService){}
-    intercept(req:HttpRequest<any>,next:HttpHandler){
+    constructor(private authService: UsersService) { }
+    intercept(req: HttpRequest<any>, next: HttpHandler) {
         return this.authService.user.pipe(
             take(1),
-            exhaustMap(user=>{
-                if(!user)
+            exhaustMap(user => {
+                if (!user) {
                     return next.handle(req);
-                else{
-                        const modifiedReq=req.clone({
-                            setHeaders:{Authorization:'Bearer '+user.token}
-                        })
-                        return next.handle(modifiedReq);
-                        
-                    
+                }
+                else {
+                    const modifiedReq = req.clone({
+                        setHeaders: { Authorization: 'Bearer ' + user.token }
+                    })
+                    return next.handle(modifiedReq);
+
+
                 }
             })
         )

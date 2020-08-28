@@ -1,8 +1,8 @@
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-red-dark rounded row">
-	<div class="navbar-brand position-relative col-6 col-md-2 text-left" href="#">
-		<img class="rounded-circle d-inline-block my-auto" src="assets/photos/logo.png" alt="socialmedia-logo" width="70px" height="70px">
-		<h3 class=" d-inline-block ml-2 my-0 vertical-center">Social Media</h3>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-red-dark rounded row position-relative">
+	<div class="navbar-brand pt-0 position-relative col-4 col-md-2 text-center ">
+		<img class="rounded-circle d-block my-auto mx-auto" src="assets/photos/logo.png" alt="socialmedia-logo" width="70px" height="70px">
+		<span>Social Media</span>
 	</div>
 	
 		<ul class="navbar-nav d-inline-block col-12 col-md-8 mx-auto pr-0 text-center customOrder">
@@ -21,18 +21,18 @@
 			
 		</ul>
 				<!--profile management-->
-	  <ul class="navbar-nav col-4 col-md-2">
-		<li class="nav-item dropdown my-auto position-relative mx-auto">
-		  <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  <ul class="list-unstyled col-4 col-md-2">
+		<li class="nav-item dropdown position-relative mt-2">
+		  <a class="dropdown-toggle text-light text-center w-100" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<div>
-				<img src="assets/photos/unknown.png" alt="user-photo" width="50px" height="50px" class="d-block mx-auto">
-				<span>User Name</span> <span><i class="fas fa-chevron-circle-down"></i></span>
+				<img [src]="domain+userData.image" alt="user-photo" width="70px" height="70px" class="d-block mx-auto rounded-circle">
+				<span>{{userData.name}}</span> <span><i class="fas fa-chevron-circle-down ml-1"></i></span>
 			</div>
 		  </a>
 		  <div class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
 			<a class="dropdown-item" href="#">Profile</a>
 			<a class="dropdown-item" href="#">Setting</a>
-			<a class="dropdown-item" href="#">Logout</a>
+			<a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
 		  </div>
 		</li>
 	  </ul>

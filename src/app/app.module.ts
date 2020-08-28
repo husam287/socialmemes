@@ -16,7 +16,8 @@ import { MakeAccoutComponent } from './welcome/make-accout/make-accout.component
 import { FooterComponent } from './footer/footer.component';
 
 import { AuthInterceptorService } from './shared/http.interceptor';
-import { UserComponent } from './users/user/user.component'
+import { UserComponent } from './users/user/user.component';
+import { ErrorMessageComponent } from './shared/error-message/error-message.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserComponent } from './users/user/user.component'
     FormComponent,
     MakeAccoutComponent,
     FooterComponent,
-    UserComponent
+    UserComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

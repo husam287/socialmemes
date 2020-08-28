@@ -4,12 +4,13 @@ import { tap, take, catchError } from 'rxjs/operators';
 import { User, userData } from './user.model';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-const domain = "http://localhost:8080";
+import { domainName } from '../domain';
+const domain = domainName ;
 
 interface authData {
   token: string,
   userId: string,
-  expireDate: Date
+  expireDate: number
 }
 
 
@@ -29,7 +30,7 @@ export class UsersService {
 
   signUp(name: string, email: string, password: string,) {
 
-    return this.http.post(domain + '/users/signup', { name: name, email: email, password: password })
+    return this.http.post(domain + 'users/signup', { name: name, email: email, password: password })
 
   }
 
@@ -40,17 +41,34 @@ export class UsersService {
 
 
   getUserInfo(userId: string) {
-    return this.http.get<userData>(domain + '/users/' + userId + '/get')
+    return this.http.get<userData>(domain + 'users/' + userId + '/get')
 
   }
 
   getAllUsers() {
-    return this.http.get<userData[]>(domain + '/users/getAll')
+    return this.http.get<userData[]>(domain + 'users/getAll')
   }
 
   
   autoLogIn() {
-    const user: User = JSON.parse(localStorage.getItem('userData'));
+    const u:{
+      _token:string,
+      _expireDate:number,
+      userId:string,
+      name:string,
+      image:string
+    } 
+    = JSON.parse(localStorage.getItem('userData'));
+
+    if(!u){
+      return;
+    }
+    const user=new User(u.userId,u._token,u._expireDate,u.name,u.image);
+
+    if(!user.token){
+      return;
+    }
+
     this.user.next(user);
     this.autoLogOut(user.expireDate);
   }
@@ -58,32 +76,35 @@ export class UsersService {
   logOut() {
     localStorage.clear();
     this.user.next(null);
-    if (confirm('Please login again')) {
-      this.router.navigate(['/']);
-    }
+    clearTimeout(this.logoutTimer);
+    this.router.navigate(['/'])
   }
 
 
   autoLogOut(expireDate: Date) {
     this.logoutTimer = setTimeout(() => {
-      this.logOut();
-    }, new Date(expireDate).getTime() - new Date().getTime());
+      if (confirm('Please login again')) {
+        this.logOut();
+    }
+    }, expireDate.getTime() - new Date().getTime());
+    
   }
 
 
 
   private handelAuth(email: string, password: string) {
-    return this.http.post<authData>(domain + '/users/login', { email: email, password: password })
+    return this.http.post<authData>(domain + 'users/login', { email: email, password: password })
       .pipe(catchError(this.handelErrors),
         tap(result => {
-          const user = new User(result.userId, result.token, result.expireDate);
+          const user = new User(result.userId, result.token, +result.expireDate);          
           this.user.next(user);
-          this.http.get<User>(domain + '/users/' + user.userId + '/get').subscribe(userData => {
+          this.http.get<User>(domain + 'users/' + user.userId + '/get').subscribe(userData => {
             user.name = userData.name;
             user.image = userData.image;
             user.bio = userData.bio;
             localStorage.setItem('userData', JSON.stringify(user));
             this.autoLogOut(user.expireDate);
+            this.router.navigate(['home']);
 
           })
         })
@@ -91,7 +112,6 @@ export class UsersService {
   }
 
   private handelErrors(error: HttpErrorResponse) {
-    console.log(error);
     if (error.error.message || error.message) {
       return throwError(error.error.message)
     }

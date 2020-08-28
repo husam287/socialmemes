@@ -12,7 +12,7 @@ export class User {
     constructor(
         public userId: string,
         private _token: string,
-        private _expireDate: Date,
+        public _expireDate: number,
         public name?: string,
         public image?: string,
         public bio?: string,
@@ -22,7 +22,7 @@ export class User {
     ) { }
 
     get token() {
-        if (this._token && new Date(this._expireDate).getTime() > new Date().getTime())
+        if (this._token && this._expireDate > new Date().getTime())
             return this._token;
         else
             return null;
@@ -30,7 +30,7 @@ export class User {
     }
     get expireDate() {
         if (this.token) {
-            return this._expireDate;
+            return new Date(this._expireDate);
         }
         else {
             return new Date();

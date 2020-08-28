@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { userData } from '../../shared/users/user.model';
 import { UsersService } from '../../shared/users/users.service';
+import { domainName } from 'src/app/shared/domain';
+const domain = domainName;
+
 
 @Component({
   selector: 'app-user',
@@ -8,11 +11,10 @@ import { UsersService } from '../../shared/users/users.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
+  domain=domain;
   postsNumber:number;
   memesNumber:number;
   @Input('userData') userData:userData; 
-
   constructor(private userService:UsersService) { }
 
   ngOnInit(): void {
@@ -20,6 +22,10 @@ export class UserComponent implements OnInit {
     .then(user=>{
       this.postsNumber = user.posts.length;
       this.memesNumber = user.memes.length;
+    })
+    .catch(err=>{
+      //err.error.message
+      //err.statusText
     })
   }
 
