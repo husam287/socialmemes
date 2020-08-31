@@ -9,15 +9,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostsComponent } from './home/posts/posts.component';
 import { MemesComponent } from './home/memes/memes.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './users-component/users/users.component';
 import { FeatureComponent } from './welcome/feature/feature.component';
 import { FormComponent } from './welcome/form/form.component';
 import { MakeAccoutComponent } from './welcome/make-accout/make-accout.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { AuthInterceptorService } from './shared/http.interceptor';
-import { UserComponent } from './users/user/user.component';
-import { ErrorMessageComponent } from './shared/error-message/error-message.component'
+import { UserComponent } from './users-component/users/user/user.component';
+import { ErrorMessageComponent } from './shared/error-message/error-message.component';
+import { UserProfileComponent } from './users-component/users/user/user-profile/user-profile.component';
+import { UsersComponentComponent } from './users-component/users-component.component';
+import { UserPostsComponent } from './users-component/users/user/user-profile/user-posts/user-posts.component';
+import { UserMemesComponent } from './users-component/users/user/user-profile/user-memes/user-memes.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { ErrorMessageComponent } from './shared/error-message/error-message.comp
     MakeAccoutComponent,
     FooterComponent,
     UserComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    UserProfileComponent,
+    UsersComponentComponent,
+    UserPostsComponent,
+    UserMemesComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

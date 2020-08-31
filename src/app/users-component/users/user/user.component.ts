@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { userData } from '../../shared/users/user.model';
-import { UsersService } from '../../shared/users/users.service';
+import { userData } from '../../../shared/users/user.model';
+import { UsersService } from '../../../shared/users/users.service';
 import { domainName } from 'src/app/shared/domain';
 const domain = domainName;
 
@@ -20,8 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserInfo(this.userData._id).toPromise()
     .then(user=>{
-      this.postsNumber = user.posts.length;
-      this.memesNumber = user.memes.length;
+      this.userData=user;
     })
     .catch(err=>{
       //err.error.message

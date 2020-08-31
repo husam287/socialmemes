@@ -19,6 +19,7 @@ red-light-color: #c36a52
     font-family: 'Staatliches', cursive;
 }
 
+
 .vertical-center{
     position: absolute;
     top: 50% ;
@@ -62,4 +63,22 @@ red-light-color: #c36a52
 .normalText{
     font-family: 'Indie Flower', cursive; 
     font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.reddyShadow{
+    box-shadow: 0px 0px 10px 0px #b4583f;
+    
+}
+
+
+.bg-grey{
+    background-color: ghostwhite;
+    
+}
+
+.scrollable{
+
+    overflow-y: scroll; 
+    max-height: 261.11px;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/users/users.service';
-import { User } from '../shared/users/user.model';
+import { User, userData } from '../shared/users/user.model';
 import { domainName } from '../shared/domain';
 import { Subscription } from 'rxjs';
 
@@ -10,14 +10,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-userData:User;
+userData:userData;
 domain=domainName;
 
 subs1:Subscription;
   constructor(private auth:UsersService) { }
 
   ngOnInit(): void {
-    this.subs1=this.auth.user.subscribe(user=>{
+    this.subs1=this.auth.currentUserData.subscribe(user=>{
       this.userData=user;
     })
   }

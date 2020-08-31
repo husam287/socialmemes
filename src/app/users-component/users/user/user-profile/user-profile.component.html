@@ -1,0 +1,53 @@
+<main *ngIf="!!userData" class="container mt-5">
+    <!--User Data Section Section-->
+    <section class="row mb-3">
+        <div class="col-3 text-left">
+            <img class="rounded-circle reddyShadow responsiveImage" [src]="domain+userData.image" alt="ProfilePic">
+        </div>
+        <div class="col-9 reddyShadow p-4 scrollable" >
+            <!-- Name -->
+            <div class="row text-center">
+                <div class="col-12">
+                    <small class="color-red-dark text-center">Name</small>
+                    <h4 class="text-dark text-center normalText w-100 text-break">{{userData.name}}</h4>
+                    <hr>
+                </div>
+            </div>
+            <!-- Bio -->
+            <div class="row text-center">
+                <div class="col-12">
+                    <small class="color-red-dark text-center">Personal Information</small>
+                    <p class="text-dark text-center normalText text-break text-justify">{{userData.bio}}</p>
+                    <hr>
+                </div>
+            </div>
+            <!-- posts and memes number -->
+            <div class="row text-center">
+                <div class="col-6 text-right">
+                    <small class="color-red-dark text-center d-inline-block p-2">Posts #</small>
+                    <p class="text-dark text-center text-break text-justify d-inline-block">{{userData.posts.length}}</p>
+                </div>
+                <div class="col-6 text-left">
+                    <small class="color-red-dark text-center d-inline-block p-2">Memes #</small>
+                    <p class="text-dark text-center text-break text-justify d-inline-block">{{userData.memes.length}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--User Data Section Section-->
+
+    <section class="row mt-5">
+        <div class="col-6">
+            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['posts']" routerLinkActive="reddyShadow bg-pink-dark">Posts</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['memes']" routerLinkActive="reddyShadow bg-pink-dark">Memes</button>
+        </div>
+    </section>
+
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+
+</main>

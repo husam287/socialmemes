@@ -1,0 +1,44 @@
+.adjustImagePosition{
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+}
+
+.adjustNamePosition{
+    position: relative;
+    left:1rem
+}
+
+.hoverFix:hover{
+    text-decoration: none;
+    color:#b4583f
+}
+
+@media only screen and (max-width:768px){
+
+    .adjustNamePosition{
+        position: relative;
+        left:-0.5rem
+
+    }
+    .adjustImagePosition{
+        position: absolute;
+        top: -3.5rem;
+        left: 1rem;
+    }
+} 
+
+/* @media only screen and (max-width:1200px){
+
+    .adjustNamePosition{
+        position: relative;
+        left:8%
+    }
+}
+@media only screen and (max-width:991px){
+
+    .adjustNamePosition{
+        position: relative;
+        left:14%
+    }
+}*/

@@ -1,11 +1,19 @@
+
+
+//########## User Data ##########
+
+
 export interface userData {
-    _id?:string,
-    name?: string,
-    image?: string,
+    _id:string,
+    name: string,
+    image: string,
     bio?: string,
     posts?: [],
     memes?: [],
 }
+
+
+//########## For Auth Data ##########
 
 
 export class User {
@@ -13,14 +21,9 @@ export class User {
         public userId: string,
         private _token: string,
         public _expireDate: number,
-        public name?: string,
-        public image?: string,
-        public bio?: string,
-        public posts?: [],
-        public memes?: [],
-
     ) { }
 
+    //##### To check the validity of the token then return it ##### 
     get token() {
         if (this._token && this._expireDate > new Date().getTime())
             return this._token;
@@ -28,6 +31,8 @@ export class User {
             return null;
 
     }
+
+    //##### check the token then return expireDate ##### 
     get expireDate() {
         if (this.token) {
             return new Date(this._expireDate);
@@ -35,14 +40,5 @@ export class User {
         else {
             return new Date();
         }
-    }
-
-    setInfo(name: string, image: string, bio: string, posts: [], memes: []) {
-        this.name = name;
-        this.image = image;
-        this.bio = bio;
-        this.posts = posts;
-        this.memes = memes;
-
     }
 }

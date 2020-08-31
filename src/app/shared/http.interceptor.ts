@@ -19,6 +19,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                 }
                 else {
                     const modifiedReq = req.clone({
+                        //##### Adding heading in all requests if user is signed in #####
                         setHeaders: { Authorization: 'Bearer ' + user.token }
                     })
                     return next.handle(modifiedReq);
