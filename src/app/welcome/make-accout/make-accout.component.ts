@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 })
 export class MakeAccoutComponent implements OnInit {
 
-  @Input() target;
+  @Input() target:HTMLElement;
   constructor() { }
 
   ngOnInit(): void {

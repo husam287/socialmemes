@@ -11,6 +11,8 @@ import AOS from 'aos'
 })
 export class WelcomeComponent implements OnInit {
 target:HTMLElement;
+
+//Features array
 features:FeatureModel[]=[
   {
     header:"Posts",
@@ -44,17 +46,19 @@ features:FeatureModel[]=[
     
 
   },
-  
-]
+];
+
+
   constructor() { }
 
  
   ngOnInit(): void {
+    //initializing the animation on scroll lib
     AOS.init({
       duration:1500,
     });
     
-    this.target=document.getElementById('target')
+    this.target=document.getElementById('target') //targets the form
   }
   
   

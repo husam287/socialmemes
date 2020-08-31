@@ -8,7 +8,7 @@ import { FeatureModel } from '../feature.model';
 })
 export class FeatureComponent implements OnInit {
 @Input() feature: FeatureModel;
-@Input() slide:string;
+@Input() slide:string; //determine how to slide
   constructor() { }
 
   ngOnInit(): void {
