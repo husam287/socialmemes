@@ -1,10 +1,14 @@
+<!-- ##### a clickable user field ##### -->
 <div class="row mx-auto position-relative reddyShadow bg-pink-light" [routerLink]="[userData._id]" style="cursor: pointer;">
+    <!-- profile Photo -->
     <div>
         <img class="rounded-circle ml-2 reddyShadow" [src]="domain+userData.image" alt="ProfilePic" height="64px" width="64px">
           <a class="h3 text-decoration-none ml-3 text-dark vertical-center">{{userData.name}}</a>
     </div>
 
+    <!--Data Numbers -->
     <div class="position-absolute reddyShadow p-2 rounded h-100 " style="right: 0px; width: 5rem;">
+        <!-- Posts Number -->
         <div class="w-100 row mx-0">
             <div class="mx-auto">
                 <i class="fas fa-newspaper mr-2 align-middle"></i> 
@@ -13,6 +17,7 @@
                 <span class="badge badge-light" >{{userData.posts? userData.posts.length:'0'}}</span>
             </div>
         </div>
+        <!-- Memes Number -->
         <div class="w-100 row mx-0">
             <div class="mx-auto">
                 <i class="fas fa-grin-squint-tears mr-2 align-middle"></i> 
