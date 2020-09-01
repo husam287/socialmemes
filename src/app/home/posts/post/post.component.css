@@ -1,0 +1,47 @@
+.adjustImagePosition{
+    position: absolute;
+    top: -0.5rem;
+    left: -2rem;
+}
+
+.adjustNamePosition{
+    position: relative;
+    left:1rem
+}
+
+.hoverFix:hover{
+    text-decoration: none;
+    color:#b4583f
+}
+
+.card-body{
+    margin-top:15px
+}
+
+.showComments{
+    display: block;
+
+}
+.hideComments{
+    display:none;
+
+}
+
+
+@media only screen and (max-width:768px){
+
+    .adjustNamePosition{
+        position: relative;
+        left:-1.5rem
+
+    }
+    .adjustImagePosition{
+        position: absolute;
+        top: -3.5rem;
+        left: 1.5rem;
+    }
+    .card-body{
+        margin-top:0px
+    }
+} 
+

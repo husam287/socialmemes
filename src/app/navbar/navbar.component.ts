@@ -20,6 +20,7 @@ subs1:Subscription;
     this.subs1=this.auth.currentUserData.subscribe(user=>{
       this.userData=user;
     })
+
   }
   
   logout(){

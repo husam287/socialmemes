@@ -1,0 +1,23 @@
+<div class="container">
+    <!-- ##### Comments ##### -->
+    <div class="row mt-4">
+        <div *ngFor="let comment of comments" class="col-12">
+            <app-comment [commentData]="comment"></app-comment>
+        </div>
+    </div>
+
+<!-- ##### Form of Add comment ##### -->
+<div class="row mb-4">
+    <div class="col-12">
+        <form>
+            <!-- current user image -->
+            <img class="rounded-circle d-inline-block mr-2" [src]="domain+'images/unknown.png'" width="30px"
+                height="30px">
+            <!-- input field -->
+            <input class="d-inline-block rounded-pill normalText form-control" type="text" placeholder="Add Comment"
+                onblur="placeholder='Add comment'" onfocus="placeholder=''">
+        </form>
+    </div>
+</div>
+
+</div>

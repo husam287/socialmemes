@@ -1,0 +1,17 @@
+.form-control{
+    width: 93%;
+}
+
+.form-control:focus,.form-control:checked,.form-control:active{
+
+    outline: none ;
+    border: none;
+}
+
+
+
+@media only screen and (max-width:992px){
+    .form-control{
+        width:85%;
+    }
+}

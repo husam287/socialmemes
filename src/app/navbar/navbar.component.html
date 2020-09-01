@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark bg-red-dark rounded row position-relative mx-auto pb-3">
 
+
 	<!--Nav Brand-->
 	<ul class="list-unstyled col-4 col-md-2">
 		<li class="nav-item dropdown position-relative mt-2">
@@ -15,6 +16,7 @@
 
 		</li>
 	</ul>
+
 
 	<!-- middle controller bar -->
 	<ul class="navbar-nav d-inline-block col-12 col-md-8 mx-auto pr-0 text-center customOrder mt-2">
@@ -38,21 +40,27 @@
 		</li>
 
 	</ul>
+
+
 	<!--profile management-->
 	<ul class="list-unstyled col-4 col-md-2">
 		<li class="nav-item dropdown position-relative mt-2">
-			<a class="dropdown-toggle text-light text-center w-100" href="#" id="navbarDropdownMenuLink" role="button"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<!-- ##### button to show drop list ##### -->
+			<button class=" bg-transparent border-0 dropdown-toggle text-light text-center w-100" id="navbarDropdownMenuLink" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,20">
 				<div class="position-relative">
+					<!-- Image of current user -->
 					<img [src]="userData? domain+userData.image:domain+'images/unknown.png' " alt="user-photo"
 						width="70px" height="70px" class="d-block mx-auto rounded-circle my-auto">
-					<span class="position-absolute " style="left: 50%; transform: translateX(-50%);">
+					<!-- Name of current user -->
+					<span class="position-absolute " style="left: 50%; transform: translateX(-50%);" >
 						{{userData? userData.name:''}}
 						<span><i class="fas fa-chevron-circle-down ml-1"></i></span>
 					</span>
 				</div>
-			</a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			</button>
+			<!-- DropList -->
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownOffset">
 				<a class="dropdown-item" [routerLink]="userData? ['/users',userData._id]:''">Profile</a>
 				<a class="dropdown-item" href="#">Setting</a>
 				<a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>

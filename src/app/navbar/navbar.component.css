@@ -8,6 +8,10 @@ li {
     
 }
 
+button:focus , button:active,button:checked{
+    outline: none;
+}
+
 
 .dropdown-item:focus, .dropdown-item:hover {
     color: #16181b;

@@ -23,6 +23,10 @@ import { UsersComponentComponent } from './users-component/users-component.compo
 import { UserPostsComponent } from './users-component/users/user/user-profile/user-posts/user-posts.component';
 import { UserMemesComponent } from './users-component/users/user/user-profile/user-memes/user-memes.component';
 import { HomeComponent } from './home/home.component';
+import { PostComponent } from './home/posts/post/post.component';
+import { CommentsComponent } from './home/posts/post/comments/comments.component';
+import { LikesComponent } from './home/posts/post/likes/likes.component';
+import { CommentComponent } from './home/posts/post/comments/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { HomeComponent } from './home/home.component';
     UserPostsComponent,
     UserMemesComponent,
     HomeComponent,
+    PostComponent,
+    CommentsComponent,
+    LikesComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

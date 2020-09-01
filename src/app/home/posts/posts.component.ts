@@ -8,7 +8,6 @@ import { domainName } from 'src/app/shared/domain';
 })
 export class PostsComponent implements OnInit {
 
-  domain=domainName;
   posts:any=[3,3,3];
   constructor(private postsService:PostsService) { }
 
