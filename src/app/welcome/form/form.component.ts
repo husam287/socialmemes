@@ -22,6 +22,7 @@ export class FormComponent implements OnInit {
   onSubmit(form: NgForm) {
 
     this.isLoading=true; //Start loading
+    this.errorMessage=null; //initializing the error message
 
     const name = form.value.name;
     const email = form.value.email;
