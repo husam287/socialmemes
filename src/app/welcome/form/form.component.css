@@ -4,3 +4,15 @@
     left:0.8rem;
 }
 
+i{
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+}
+
+/*To hide the password show eye*/
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear
+{
+    display: none;
+}

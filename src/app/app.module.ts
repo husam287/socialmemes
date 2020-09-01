@@ -27,6 +27,7 @@ import { PostComponent } from './home/posts/post/post.component';
 import { CommentsComponent } from './home/posts/post/comments/comments.component';
 import { LikesComponent } from './home/posts/post/likes/likes.component';
 import { CommentComponent } from './home/posts/post/comments/comment/comment.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CommentComponent } from './home/posts/post/comments/comment/comment.com
     CommentsComponent,
     LikesComponent,
     CommentComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

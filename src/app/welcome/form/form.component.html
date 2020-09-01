@@ -3,39 +3,105 @@
 
     <!--##### Email input #####-->
     <div class="form-group position-relative">
+        <!-- suspented text above input -->
         <span [ngClass]="spanHide[0]? 'd-none':''" class="small text-center text-muted mr-1">Email</span>
-        <input class="form-control normalText" type="email" name="email" #email="ngModel" ngModel placeholder="Email"
-            onfocus="this.placeholder='';" onblur="this.placeholder='Email';" (focus)="spanHide[0]=!spanHide[0]"
-            (blur)="spanHide[0]=!spanHide[0]" required>
+        <!-- feedback icons -->
+        <i [ngClass]="email.touched&&email.valid? '':'d-none'" class="far fa-check-circle fa-2x text-success"></i><!--Right icon-->
+        <i [ngClass]="email.touched&&!email.valid? '':'d-none'" class="far fa-times-circle fa-2x text-danger"></i><!--Wrong icon-->
+        <!-- Input Field -->
+        <input 
+        class="form-control normalText" 
+        type="email" 
+        name="email" 
+        ngModel 
+        #email="ngModel" 
+        placeholder="Email"
+        onfocus="this.placeholder='';" 
+        onblur="this.placeholder='Email';" 
+        (focus)="spanHide[0]=!spanHide[0]"
+        (blur)="spanHide[0]=!spanHide[0]" 
+        required
+        email>
     </div>
 
     <!--##### Name input #####-->
     <div *ngIf="!login" class="form-group position-relative">
-        <span [ngClass]="spanHide[1]? 'd-none':''" class="small text-center text-muted mr-1">Full
-            Name</span>
-        <input class="form-control normalText" type="text" name="name" #name="ngModel" ngModel placeholder="Full Name"
-            onfocus="this.placeholder=''" onblur="this.placeholder='Full Name'" (focus)="spanHide[1]=!spanHide[1]"
-            (blur)="spanHide[1]=!spanHide[1]" required>
+        <!-- suspented text above input -->
+        <span [ngClass]="spanHide[1]? 'd-none':''" class="small text-center text-muted mr-1">FullName</span>
+        <!-- feedback icons -->
+        <i [ngClass]="name.touched&&name.valid? '':'d-none'" class="far fa-check-circle fa-2x text-success"></i><!--Right icon-->
+        <i [ngClass]="name.touched&&!name.valid? '':'d-none'" class="far fa-times-circle fa-2x text-danger"></i><!--Wrong icon-->
+        <!-- Input Field -->
+        <input 
+        class="form-control normalText" 
+        type="text" 
+        name="name" 
+        ngModel 
+        #name="ngModel" 
+        placeholder="Full Name"
+        onfocus="this.placeholder=''" 
+        onblur="this.placeholder='Full Name'" 
+        (focus)="spanHide[1]=!spanHide[1]"
+        (blur)="spanHide[1]=!spanHide[1]" 
+        required>
     </div>
 
     <!--##### Password fields #####-->
     <div class="form-group position-relative">
+        <!-- suspented text above input -->
         <span [ngClass]="spanHide[2]? 'd-none':''" class="small text-center text-muted">Password</span>
-        <input class="form-control normalText" type="password" name="password" #password="ngModel" ngModel placeholder="Password"
-            onfocus="this.placeholder=''" onblur="this.placeholder='Password'" (focus)="spanHide[2]=!spanHide[2]"
-            (blur)="spanHide[2]=!spanHide[2]" required>
-    </div>
-    <!-- Confirm password -->
-    <div *ngIf="!login" class="form-group position-relative">
-        <span [ngClass]="spanHide[3]? 'd-none':''" class="small text-center text-muted mr-1">Confirm
-            Password</span>
-        <input class="form-control normalText" type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel
-            placeholder="Confirm Password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm Password'"
-            (focus)="spanHide[3]=!spanHide[3]" (blur)="spanHide[3]=!spanHide[3]" required>
+        <!-- feedback icons -->
+        <i [ngClass]="password.touched&&password.valid? '':'d-none'" class="far fa-check-circle fa-2x text-success"></i><!--Right icon-->
+        <i [ngClass]="password.touched&&!password.valid? '':'d-none'" class="far fa-times-circle fa-2x text-danger"></i><!--Wrong icon-->
+        <!-- Input Field -->
+        <input 
+        class="form-control normalText" 
+        type="password" name="password" 
+        ngModel 
+        #password="ngModel" 
+        placeholder="Password"
+        onfocus="this.placeholder=''" 
+        onblur="this.placeholder='Password'"
+        (focus)="spanHide[2]=!spanHide[2]"
+        (blur)="spanHide[2]=!spanHide[2]"
+        password 
+        required>
     </div>
 
+    <!--##### Confirm password #####-->
+    <div *ngIf="!login" class="form-group position-relative">
+        <!-- suspented text above input -->
+        <span [ngClass]="spanHide[3]? 'd-none':''" class="small text-center text-muted mr-1">Confirm Password</span>
+        <!-- feedback icons -->
+        <i [ngClass]="confirmPassword.touched&&confirmPassword.valid&&(confirmPassword.value==password.value)? '':'d-none'" class="far fa-check-circle fa-2x text-success"></i><!--Right icon-->
+        <i [ngClass]="confirmPassword.touched&&(!confirmPassword.valid||(confirmPassword.value!==password.value))? '':'d-none'" class="far fa-times-circle fa-2x text-danger"></i><!--Wrong icon-->
+        <!-- Input Field -->
+        <input 
+        class="form-control normalText" 
+        type="password" 
+        name="confirmPassword" 
+        ngModel
+        #confirmPassword="ngModel" 
+        placeholder="Confirm Password" 
+        onfocus="this.placeholder=''" 
+        onblur="this.placeholder='Confirm Password'"
+        (focus)="spanHide[3]=!spanHide[3]"
+        (blur)="spanHide[3]=!spanHide[3]" 
+        password
+        required>
+    </div>
+
+
     <!--##### Buttons #####-->
-    <button class="btn bg-red-dark btn-block text-light" type="submit">{{login? 'Log in':'Sign up'}}</button>
-    <button class="btn bg-pink-light btn-block" type="button"
-        (click)="onSwitch()">{{login? 'Switch to sign up':'Switch to log in'}}</button>
+    <div *ngIf="!isLoading">
+        <button class="btn bg-red-dark btn-block text-light" type="submit" [disabled]="!form.valid || (!login && form.value.password!==form.value.confirmPassword)">{{login? 'Log in':'Sign up'}}</button>
+        <button class="btn bg-pink-light btn-block mb-2" type="button" (click)="onSwitch()">{{login? 'Switch to sign up':'Switch to log in'}}</button>
+    </div>
+    
+    <!-- ##### Error Message ##### -->
+    <app-error-message [errorMessage]="errorMessage"></app-error-message>
+
+    <!-- ##### Loader spinner ##### -->
+    <app-loader *ngIf="isLoading"></app-loader>
+    
 </form>

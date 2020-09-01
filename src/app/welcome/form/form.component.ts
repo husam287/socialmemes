@@ -8,9 +8,11 @@ import { UsersService } from '../../shared/users/users.service';
 })
 export class FormComponent implements OnInit {
 
-
-  login = false; /*to switch between log in and sign up*/
+  errorMessage=null; //The error message for any server errors
+  login = true; /*to switch between log in and sign up*/
   spanHide = [true, true, true, true]; /*for the 4 spans in the inputs*/
+
+  isLoading=false; //for indicating loading
   constructor(private auth: UsersService) { }
 
   ngOnInit(): void {
@@ -18,28 +20,33 @@ export class FormComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
+
+    this.isLoading=true; //Start loading
+
     const name = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
     const confirm = form.value.confirmPassword;
 
-    //##### Checking passwords #####
-    if (password !== confirm && !this.login) {
-      return alert('Error!!');
-    }
-
     //##### Login case #####
     if (this.login) {
-      this.auth.logIn(email, password)
-        .subscribe(result => { },
+      this.auth.logIn(email, password).toPromise()
+        .then()
+        .catch(
           err => {
-            console.log(err);
+            this.isLoading=false; //finish loading
+            this.errorMessage=err;
           })
     }
 
     //##### Sign up Case #####
     if (!this.login) {
-      
+      this.auth.signUp(name,email,password).toPromise()
+      .then()
+      .catch(err=>{
+        this.errorMessage=err;
+        this.isLoading=false; //finish loading
+      })
 
     }
 
