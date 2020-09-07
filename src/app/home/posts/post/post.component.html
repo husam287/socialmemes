@@ -1,63 +1,66 @@
-<section class="card col-12 position-relative bg-grey h-100 pt-2 mx-auto post">
-
-    <!-- ##### Creator Part ##### -->
-    <!-- Creator Image -->
-    <img class="rounded-circle adjustImagePosition reddyShadow " [src]="domain+'images/unknown.png'"
-        style="cursor: pointer;" [routerLink]="['/users','5f4073c2f751052714ea80a4']" alt="post creator image"
-        width="70" height="70px">
-    <!-- Creator Name -->
-    <a class="h5 pt-2 pl-3 color-red-light hoverFix adjustNamePosition" style="cursor: pointer;"
-        [routerLink]="['/users','5f4073c2f751052714ea80a4']">Hossam Sherif</a>
-
-
-    <!--##### Post Body #####-->
-    <div class="card-body text-center scrollable p-2" style="max-height: 30vh;">
-        <p class="card-text normalText text-break text-justify">s</p>
-    </div>
-
-    <!-- ##### Time of the Post #####-->
-    <p class="card-text  mb-0 text-center"><small class="text-muted normalText">created 3 mins ago</small></p>
-
-
-    <!--##### Clickable Post's Image to open modal #####-->
-    <a data-toggle="modal" data-target="#openPhoto" style="cursor: pointer;">
-        <!-- Image of the Post -->
-        <img class="card-img-bottom"
-            [src]="'https://scontent.fcai21-1.fna.fbcdn.net/v/t1.0-9/118280859_216020499948570_3004726359162838904_o.jpg?_nc_cat=1&_nc_sid=8bfeb9&_nc_eui2=AeGMNe0m1jxMEWcyrnOMZ66KpcXaEB-3cLilxdoQH7dwuLXIPxwKB6SP-XpDy2mq9WXO6-kHtNpHbc62VEPKCSjK&_nc_ohc=gOS5JWv8zqsAX-dXyVl&_nc_ht=scontent.fcai21-1.fna&oh=ba5431bdd2848933841e90827d333279&oe=5F703357'"
-            alt="post photo">
-    </a>
-    <!-- The Modal -->
-    <div class="modal fade" style="height: 100vh; width: 100vw;" id="openPhoto" tabindex="-1"
-        aria-labelledby="openPhotoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <!-- close button -->
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <!-- Opened Image -->
-                    <img class="card-img-bottom mb-3"
-                        [src]="'https://scontent.fcai21-1.fna.fbcdn.net/v/t1.0-9/118280859_216020499948570_3004726359162838904_o.jpg?_nc_cat=1&_nc_sid=8bfeb9&_nc_eui2=AeGMNe0m1jxMEWcyrnOMZ66KpcXaEB-3cLilxdoQH7dwuLXIPxwKB6SP-XpDy2mq9WXO6-kHtNpHbc62VEPKCSjK&_nc_ohc=gOS5JWv8zqsAX-dXyVl&_nc_ht=scontent.fcai21-1.fna&oh=ba5431bdd2848933841e90827d333279&oe=5F703357'"
-                        alt="post photo">
+<div class="row my-5">
+    <section class="col-12 card position-relative bg-grey pt-2 post">
+    
+        <!-- ##### Creator Part ##### -->
+        <!-- Creator Image -->
+        <img class="rounded-circle adjustImagePosition reddyShadow " [src]="domain+postData.creator.image"
+            style="cursor: pointer;" [routerLink]="['/users',postData.creator._id]" alt="post creator image"
+            width="70px" height="70px">
+        <!-- Creator Name -->
+        <a class="h5 pt-2 pl-3 color-red-light hoverFix adjustNamePosition" style="cursor: pointer;"
+            [routerLink]="['/users',postData.creator._id]">{{postData.creator.name}}</a>
+    
+    
+        <!--##### Post Body #####-->
+        <div class="card-body text-center scrollable p-2" style="max-height: 30vh;">
+            <p class="card-text normalText text-break text-justify">{{postData.content}}</p>
+        </div>
+    
+        <!-- ##### Time of the Post #####-->
+        <p class="card-text  mb-0 text-center"><small class="text-muted normalText">created {{postData.timeOfPost}} ago</small></p>
+    
+    
+        <!--##### Clickable Post's Image to open modal #####-->
+        <a *ngIf="postData.image" data-toggle="modal" [attr.data-target]="'#id'+ postData._id" style="cursor: pointer;">
+            <!-- Image of the Post -->
+            <img class="card-img-bottom"
+                [src]="domain+postData.image"
+                alt="post photo">
+        </a>
+        <!-- The Modal -->
+        <div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'id'+postData._id" tabindex="-1"
+            aria-labelledby="openPhotoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <!-- close button -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <!-- Opened Image -->
+                        <img class="card-img-bottom"
+                            [src]="domain+postData.image"
+                            alt="post photo"
+                            style="height: 90vh;width: auto;">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <!-- ##### Like and Comment part ##### -->
-    <div class="row mt-5">
-        <div class="col-6 p-0">
-            <button class="btn btn-block bg-red-dark text-center text-light">Like</button>
-        </div>
-        <div class="col-6 p-0">
-            <button class="btn btn-block bg-pink-dark text-center text-dark" (click)="showComments()">Comment</button>
-        </div>
-    </div>
-    <!-- ##### Comments (Appears when comment is clicked)##### -->
-    <section [ngClass]="commentsIsShow? 'showComments':'hideComments'" class="comments">
-        <app-comments [comments]="comments"></app-comments>
-    </section>
     
-</section>
+    
+        <!-- ##### Like and Comment part ##### -->
+        <div class="row mt-5">
+            <div class="col-6 p-0">
+                <button class="btn btn-block bg-red-dark text-center text-light">Like</button>
+            </div>
+            <div class="col-6 p-0">
+                <button class="btn btn-block bg-pink-dark text-center text-dark" (click)="showComments()">Comment</button>
+            </div>
+        </div>
+        <!-- ##### Comments (Appears when comment is clicked)##### -->
+        <section [ngClass]="commentsIsShow? 'showComments':'hideComments'" class="comments">
+            <app-comments [comments]="postData.comments"></app-comments>
+        </section>
+        
+    </section>
+</div>

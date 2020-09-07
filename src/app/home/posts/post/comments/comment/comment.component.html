@@ -1,12 +1,12 @@
 <!-- ##### Comment Owner Data ##### -->
 <div class="row mb-2">
     <div class="col-12">
-        <a class="text-decoration-none" [routerLink]="['/users','5f4073c2f751052714ea80a4']">
+        <a class="text-decoration-none" [routerLink]="['/users',commentData.commentOwner._id]">
             <!-- image -->
-            <img class="rounded-circle d-inline-block reddyShadow" [src]="domain+'images/unknown.png'"
+            <img class="rounded-circle d-inline-block reddyShadow" [src]="domain + commentData.commentOwner.image"
                 alt="Comment owner photo" height="40px" width="40px">
             <!-- name -->
-            <h6 class="d-inline-block ml-2 color-red-light hoverFix">Hossam Sherif</h6>
+            <h6 class="d-inline-block ml-2 color-red-light hoverFix">{{commentData.commentOwner.name}}</h6>
         </a>
     </div>
 </div>
@@ -15,7 +15,7 @@
 <!-- ##### Comment Content ##### -->
 <div class="row">
     <div class="col-12">
-        <small class="text-center normalText w-100 text-break">That's Wonderfull</small>
+        <small class="text-center normalText w-100 text-break">{{commentData.commentContent}}</small>
         <hr>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { domainName } from 'src/app/shared/domain';
+import { Comment } from 'src/app/shared/comments/comment.model';
 
 @Component({
   selector: 'app-comment',
@@ -8,7 +9,7 @@ import { domainName } from 'src/app/shared/domain';
 })
 export class CommentComponent implements OnInit {
 
-  @Input('commentData') commentData;
+  @Input('commentData') commentData:Comment;
   domain=domainName;
   constructor() { }
 

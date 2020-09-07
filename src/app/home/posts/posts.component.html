@@ -1,6 +1,8 @@
-<main class="mt-5">
+<main>
     <!-- ##### Posts ##### -->
-    <div class="row" *ngFor="let post of posts;let i=index">
-        <app-post [postData]="post" [indexOfPost]="i"></app-post>
-    </div>
+    <app-post 
+    *ngFor="let post of posts ;let i=index"
+    [postData]="post" 
+    [indexOfPost]="i">
+    </app-post>
 </main>
