@@ -6,7 +6,7 @@ export class Post{
         public creator:userData,
         public content:string,
         public comments:Comment[],
-        public likes:string[],
+        public likes:userData[],
         public createdAt:string,
         public updatedAt:string,
         public image?:string,

@@ -26,6 +26,9 @@
     display:none;
 
 }
+.postSeparate{
+    margin-top: 12vh;
+}
 
 
 @media only screen and (max-width:768px){

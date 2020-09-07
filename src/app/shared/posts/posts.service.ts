@@ -17,6 +17,17 @@ export class PostsService {
     return this.http.get<Post[]>(this.domain+'posts/getAll');
   }
 
+  getPost(postId:string){
+    return this.http.get<Post>(this.domain+'posts/'+postId+'/get');
+  }
+
+  like(postId:string){
+    return this.http.post(this.domain+'posts/'+postId+'/like',null);
+  }
+
+  unLike(postId:string){
+    return this.http.post(this.domain+'posts/'+postId+'/unlike',null);
+  }
   
 
 }
