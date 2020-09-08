@@ -30,29 +30,60 @@ red-light-color: #c36a52
     background-color:#ecc8a0 ;
  
 }
-.color-pink-light{
-    color:#ecc8a0;
-}
-.bg-pink-dark{
+.bg-pink-light:hover{
     background-color:#e6b884 ;
  
 }
+
+.color-pink-light{
+    color:#ecc8a0;
+}
+.color-pink-light:hover{
+    color:#e6b884;
+}
+
+.bg-pink-dark{
+    background-color:#e6b884 ;
+}
+.bg-pink-dark:hover{
+    background-color:#ecc8a0 ;
+}
+
 .color-pink-dark{
     color:#e6b884
 }
+.color-pink-dark:hover{
+    color:#ecc8a0
+}
+
 .bg-red-dark{
     
     background-color: #b4583f ;
 }
-.color-red-dark{
-    color: #b4583f;
-}
-.bg-red-light{
+.bg-red-dark:hover{
     
     background-color: #c36a52 ;
 }
+
+.color-red-dark{
+    color: #b4583f;
+}
+.color-red-dark:hover{
+    color: #c36a52;
+}
+
+.bg-red-light{   
+    background-color: #c36a52 ;
+}
+.bg-red-light:hover{   
+    background-color: #b4583f ;
+}
+
 .color-red-light{
     color: #c36a52;
+}
+.color-red-light:hover{
+    color: #b4583f;
 }
 
 .border-red-light{

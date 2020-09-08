@@ -1,0 +1,35 @@
+<form class="mt-2" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <!-- ##### Content of the post ##### -->
+    <div class="form-group">
+        <textarea name="content" cols="5" rows="5" class="form-control normalText"
+            [ngClass]="content.touched && content.invalid? 'border-danger':''" placeholder="Say Something to the world"
+            ngModel #content="ngModel" required></textarea>
+    </div>
+
+    <!-- ##### messages ##### -->
+    <div class="form-row" *ngIf="failMessage || successMessage">
+        <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            {{successMessage}}
+        </div>
+        <app-error-message [errorMessage]="failMessage"></app-error-message>
+    </div>
+
+    <!-- ##### image of the post ##### -->
+    <div class="form-row">
+        <!-- image input -->
+        <div class="col text-left">
+            <label for="imageInput" style="cursor: pointer;">
+                <i class="fas fa-camera fa-2x color-red-dark"></i>
+                <p class="m-0 position-relative d-inline ml-2 text-dark" style="bottom: 0.3rem;">{{fileName}}</p>
+            </label>
+            <!-- displayed none -->
+            <input name="image" type="file" id="imageInput" (change)="onChange($event.target.files)">
+        </div>
+
+        <!-- Button to submit -->
+        <div class="col text-right">
+            <button class="btn bg-pink-dark" type="submit" [disabled]="!form.valid">Add Post</button>
+        </div>
+    </div>
+
+</form>

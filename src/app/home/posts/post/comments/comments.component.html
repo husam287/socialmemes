@@ -1,23 +1,33 @@
 <div class="container">
     <!-- ##### Comments ##### -->
     <div class="row mt-4">
-        <div  class="col-12">
+        <div class="col-12">
             <app-comment *ngFor="let comment of comments" [commentData]="comment"></app-comment>
         </div>
     </div>
 
-<!-- ##### Form of Add comment ##### -->
-<div class="row mb-4">
-    <div class="col-12">
-        <form>
-            <!-- current user image -->
-            <img *ngIf="currentUser" class="rounded-circle d-inline-block mr-2" [src]="domain + currentUser.image" width="30px"
-                height="30px">
-            <!-- input field -->
-            <input class="d-inline-block rounded-pill normalText form-control" type="text" placeholder="Add Comment"
-                onblur="placeholder='Add comment'" onfocus="placeholder=''">
-        </form>
+    <!--##### error message #####-->
+    <app-error-message [errorMessage]="errorMessage"></app-error-message>
+
+    <!-- ##### Form of Add comment ##### -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="position-relative">
+                <!-- current user image -->
+                <img *ngIf="currentUser" class="rounded-circle d-inline-block mr-2" [src]="domain + currentUser.image"
+                    width="30px" height="30px">
+                <!-- input field -->
+                <input class="d-inline-block rounded-pill normalText form-control" type="text" placeholder="Add Comment"
+                    onblur="placeholder='Add comment'" onfocus="placeholder=''" name="commentContent" ngModel
+                    #commentContent="ngModel" required>
+
+                <!-- submit button --> 
+                <button class=" btn color-red-dark adjustButtonPos" type="submit" [disabled]="!form.valid">
+                    <i class="far fa-paper-plane"></i>
+                </button>
+                
+            </form>
+        </div>
     </div>
-</div>
 
 </div>

@@ -21,12 +21,20 @@ export class PostsService {
     return this.http.get<Post>(this.domain+'posts/'+postId+'/get');
   }
 
+  addPost(formData:FormData){
+    return this.http.post<{'message':string}>(this.domain+'posts/add',formData);
+  }
+
   like(postId:string){
     return this.http.post(this.domain+'posts/'+postId+'/like',null);
   }
 
   unLike(postId:string){
     return this.http.post(this.domain+'posts/'+postId+'/unlike',null);
+  }
+
+  addComment(postId:string,commentContent:string){
+    return this.http.post(this.domain+'posts/'+postId+'/comment',{commentContent:commentContent});
   }
   
 

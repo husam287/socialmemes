@@ -39,7 +39,6 @@ export class PostComponent implements OnInit {
     //Adjust like button state
     
     this.userAuth.user.subscribe(user => {
-      console.log(user)
       const likes = this.postData.likes.map(i => {
         return i._id;
       })
