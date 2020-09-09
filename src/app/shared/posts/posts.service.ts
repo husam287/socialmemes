@@ -17,6 +17,9 @@ export class PostsService {
   getAllPosts(){
     return this.http.get<Post[]>(this.domain+'posts/getAll');
   }
+  getAllUserPosts(userId:string){
+    return this.http.get<Post[]>(this.domain+'posts/'+userId+'/getAll')
+  }
 
   getPost(postId:string){
     return this.http.get<Post>(this.domain+'posts/'+postId+'/get');

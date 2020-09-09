@@ -1,1 +1,4 @@
-<p>user-posts works!</p>
+
+<div *ngIf="userPosts.length>=0">
+    <app-post *ngFor="let post of userPosts;let i=index" [postData]="post" [indexOfPost]="i"></app-post>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from 'src/app/shared/posts/posts.service';
+import { Post } from 'src/app/shared/posts/post.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-posts',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPostsComponent implements OnInit {
 
+  userPosts:Post[];
+  errorMessage=null;
   constructor() { }
 
   ngOnInit(): void {
+    
+  
   }
+
 
 }
