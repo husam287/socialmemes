@@ -10,6 +10,7 @@ import { domainName } from '../domain';
 export class PostsService {
   domain=domainName;
 
+  posts=new Subject<number>();
 
   constructor(private http:HttpClient) { }
 
@@ -23,6 +24,10 @@ export class PostsService {
 
   addPost(formData:FormData){
     return this.http.post<{'message':string}>(this.domain+'posts/add',formData);
+  }
+
+  deletePost(postId:string){
+    return this.http.delete(this.domain+'posts/'+postId+'/delete');
   }
 
   like(postId:string){

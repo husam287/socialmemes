@@ -30,7 +30,7 @@ red-light-color: #c36a52
     background-color:#ecc8a0 ;
  
 }
-.bg-pink-light:hover{
+.bg-pink-light:hover,.bg-pink-light:focus{
     background-color:#e6b884 ;
  
 }
@@ -38,21 +38,21 @@ red-light-color: #c36a52
 .color-pink-light{
     color:#ecc8a0;
 }
-.color-pink-light:hover{
+.color-pink-light:hover,.color-pink-light:focus{
     color:#e6b884;
 }
 
 .bg-pink-dark{
     background-color:#e6b884 ;
 }
-.bg-pink-dark:hover{
+.bg-pink-dark:hover,.bg-pink-dark:focus{
     background-color:#ecc8a0 ;
 }
 
 .color-pink-dark{
     color:#e6b884
 }
-.color-pink-dark:hover{
+.color-pink-dark:hover,.color-pink-dark:focus{
     color:#ecc8a0
 }
 
@@ -60,7 +60,7 @@ red-light-color: #c36a52
     
     background-color: #b4583f ;
 }
-.bg-red-dark:hover{
+.bg-red-dark:hover,.bg-red-dark:focus{
     
     background-color: #c36a52 ;
 }
@@ -68,21 +68,21 @@ red-light-color: #c36a52
 .color-red-dark{
     color: #b4583f;
 }
-.color-red-dark:hover{
+.color-red-dark:hover,.color-red-dark:focus{
     color: #c36a52;
 }
 
 .bg-red-light{   
     background-color: #c36a52 ;
 }
-.bg-red-light:hover{   
+.bg-red-light:hover,.bg-red-light:focus{   
     background-color: #b4583f ;
 }
 
 .color-red-light{
     color: #c36a52;
 }
-.color-red-light:hover{
+.color-red-light:hover,.color-red-light:focus{
     color: #b4583f;
 }
 
@@ -109,7 +109,14 @@ red-light-color: #c36a52
 }
 
 .scrollable{
-
     overflow-y: scroll; 
     max-height: 261.11px;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable::-webkit-scrollbar {
+    width: 0.2rem;
+    background-color: #b4583f;
+  }
+  .scrollable::-webkit-scrollbar-thumb {
+    background: #888;
+  }

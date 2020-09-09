@@ -6,13 +6,10 @@
 
 .adjustNamePosition{
     position: relative;
-    left:1rem
+    left:1rem;
+    top: 0.6rem;
 }
 
-.hoverFix:hover{
-    text-decoration: none;
-    color:#b4583f
-}
 
 .card-body{
     margin-top:15px
@@ -30,6 +27,9 @@
     margin-top: 12vh;
 }
 
+.card-body{
+    margin-top: 1rem !important;
+}
 
 @media only screen and (max-width:768px){
 

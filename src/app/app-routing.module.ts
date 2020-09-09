@@ -9,14 +9,16 @@ import { UsersComponentComponent } from './users-component/users-component.compo
 import { UserPostsComponent } from './users-component/users/user/user-profile/user-posts/user-posts.component';
 import { UserMemesComponent } from './users-component/users/user/user-profile/user-memes/user-memes.component';
 import { HomeComponent } from './home/home.component';
+import { PostComponent } from './home/posts/post/post.component';
 
 const routes: Routes = [
   {path:'',component:WelcomeComponent,pathMatch:'full'},
 
   //########## Home routes ##########
-  {path:'home',redirectTo:'home/posts'},
   {path:'home',component:HomeComponent,children:[
+    {path:'',redirectTo:'/home/posts',pathMatch:'full'},
     {path:'posts',component:PostsComponent},
+    {path:'posts/:postId',component:PostComponent},
     {path:'memes',component:MemesComponent},
   ]},
 

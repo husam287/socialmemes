@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { domainName } from 'src/app/shared/domain';
 import { Post } from "src/app/shared/posts/post.model"
 import { UsersService } from 'src/app/shared/users/users.service';
@@ -12,44 +13,32 @@ import { PostsService } from 'src/app/shared/posts/posts.service';
 export class PostComponent implements OnInit {
 
   domain = domainName;
+  errorMessage=null;
   @Input('postData') postData: Post; //post info
   @Input('indexOfPost') indexOfPost: number; //index of the post
 
-  postss=[1,2,3,4];
 
   liked = false; //liked the post or not
 
   commentsIsShow = false; //if comments are shown or not
-  constructor(private userAuth: UsersService, private postService: PostsService) { }
+  constructor(private userAuth: UsersService, private postService: PostsService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    //make the postData with constractor to uses its function
-    this.postData = new Post(
-      this.postData._id,
-      this.postData.creator,
-      this.postData.content,
-      this.postData.comments,
-      this.postData.likes,
-      this.postData.createdAt,
-      this.postData.updatedAt,
-      this.postData.image);
-
-
-    //Adjust like button state
-    
-    this.userAuth.user.subscribe(user => {
-      const likes = this.postData.likes.map(i => {
-        return i._id;
-      })
-
-      if (likes.indexOf(user.userId) >= 0)
-        this.liked = true;
-      else
-        this.liked = false;
-
-    })
-
+    const postId = this.activeRouter.snapshot.params['postId'];
+    if (postId) {
+      this.postService.getPost(postId).toPromise()
+        .then(result => {
+          this.postData=result;
+          this.initializePostData();
+          this.commentsIsShow=true;
+        })
+        .catch(err=>{
+          this.errorMessage=err;
+        })
+    }
+    else {
+      this.initializePostData();
+    }
   }
 
   //##### Show-hide comment function #####
@@ -78,34 +67,64 @@ export class PostComponent implements OnInit {
       this.postService.unLike(postId).toPromise()
         .then(message => {
           console.log(message);
-          this.liked=false;
+          this.liked = false;
           return this.postService.getPost(this.postData._id).toPromise()
         })
         //update posts
-        .then(newPost=>{
-          this.postData.likes=newPost.likes;
+        .then(newPost => {
+          this.postData.likes = newPost.likes;
         })
     }
     //if it's not liked yet
-    else{
+    else {
       this.postService.like(postId).toPromise()
         .then(message => {
           console.log(message);
-          this.liked=true;
+          this.liked = true;
           return this.postService.getPost(this.postData._id).toPromise()
         })
         //update posts
-        .then(newPost=>{
-          this.postData.likes=newPost.likes;
+        .then(newPost => {
+          this.postData.likes = newPost.likes;
         })
     }
 
-    
-    
-    
-    
+
+
+
+
   }
 
 
+
+  private initializePostData() {
+
+    //make the postData with constractor to uses its function
+    this.postData = new Post(
+      this.postData._id,
+      this.postData.creator,
+      this.postData.content,
+      this.postData.comments,
+      this.postData.likes,
+      this.postData.createdAt,
+      this.postData.updatedAt,
+      this.postData.image);
+
+
+    //Adjust like button state
+
+    this.userAuth.user.subscribe(user => {
+      const likes = this.postData.likes.map(i => {
+        return i._id;
+      })
+
+      if (likes.indexOf(user.userId) >= 0)
+        this.liked = true;
+      else
+        this.liked = false;
+
+    })
+
+  }
 
 }

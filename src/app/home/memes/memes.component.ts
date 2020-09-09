@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from 'src/app/shared/posts/posts.service';
+import { take, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-memes',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private posts:PostsService) { }
 
   ngOnInit(): void {
   }
 
+
+  
 }

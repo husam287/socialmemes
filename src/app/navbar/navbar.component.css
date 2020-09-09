@@ -33,6 +33,11 @@ button:focus , button:active,button:checked{
     opacity: 0.8;
 }
 
+/*remove the default hover*/
+.bg-red-dark:hover{
+    background-color:  #b4583f;
+}
+
 
 /*#### changeing the order at small screens #####*/
 @media only screen and (max-width:768px){
