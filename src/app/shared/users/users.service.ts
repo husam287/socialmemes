@@ -78,7 +78,10 @@ export class UsersService {
 
     const user = new User(u.userId, u._token, u._expireDate);
 
-    if (!user.token) return; //if token expires
+    if (!user.token){
+      this.logOut();
+      return; //if token expires
+    } 
 
     this.user.next(user);
     
