@@ -3,6 +3,8 @@ import { Subject } from 'rxjs';
 import { Post } from './post.model';
 import { HttpClient } from '@angular/common/http';
 import { domainName } from '../domain';
+import { ThrowStmt } from '@angular/compiler';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { domainName } from '../domain';
 export class PostsService {
   domain=domainName;
 
-  posts=new Subject<number>();
+  posts=new Subject<Post[]>();
 
   constructor(private http:HttpClient) { }
 
@@ -26,11 +28,16 @@ export class PostsService {
   }
 
   addPost(formData:FormData){
-    return this.http.post<{'message':string}>(this.domain+'posts/add',formData);
+    return this.http.post<{'message':string}>(this.domain+'posts/add',formData).pipe(tap(this.updatePostsObservable));
+  }
+
+  editPost(postId:string,formData:FormData){
+    return this.http.put<{'message':string}>(`${this.domain}posts/${postId}/edit`,formData)
+    
   }
 
   deletePost(postId:string){
-    return this.http.delete(this.domain+'posts/'+postId+'/delete');
+    return this.http.delete(this.domain+'posts/'+postId+'/delete').pipe(tap(this.updatePostsObservable));
   }
 
   like(postId:string){
@@ -45,5 +52,15 @@ export class PostsService {
     return this.http.post(this.domain+'posts/'+postId+'/comment',{commentContent:commentContent});
   }
   
+
+
+  //updates the posts observable
+  private updatePostsObservable=()=>{
+    this.getAllPosts().toPromise().then(
+      result=>{
+        this.posts.next(result);
+      }
+    )
+  }
 
 }

@@ -3,11 +3,11 @@
     <div class="form-group">
         <textarea name="content" cols="5" rows="5" class="form-control normalText"
             [ngClass]="content.touched && content.invalid? 'border-danger':''" placeholder="Say Something to the world"
-            ngModel #content="ngModel" required></textarea>
+            [ngModel]="defaultData? defaultData.content:''" #content="ngModel" required></textarea>
     </div>
 
     <!-- ##### messages ##### -->
-    <div class="form-row" *ngIf="failMessage || successMessage">
+    <div  *ngIf="failMessage || successMessage">
         <div *ngIf="successMessage" class="alert alert-success" role="alert">
             {{successMessage}}
         </div>
@@ -28,7 +28,8 @@
 
         <!-- Button to submit -->
         <div class="col text-right">
-            <button class="btn bg-pink-dark" type="submit" [disabled]="!form.valid">Add Post</button>
+            <button *ngIf="editMode" class="btn btn-danger mr-2" type="button" [routerLink]="['../']">Cancel</button>
+            <button class="btn bg-pink-dark" type="submit" >{{editMode? 'Edit Post':'Add Post'}}</button>
         </div>
     </div>
 

@@ -14,18 +14,27 @@ export class PostComponent implements OnInit {
 
   domain = domainName;
   errorMessage=null;
+
   @Input('postData') postData: Post; //post info
   @Input('indexOfPost') indexOfPost: number; //index of the post
 
+  editMode=false; 
 
   liked = false; //liked the post or not
-
   commentsIsShow = false; //if comments are shown or not
+  
   constructor(private userAuth: UsersService, private postService: PostsService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //##### reading the query params if found
+    this.activeRouter.queryParams.subscribe((query:Params)=>{
+      this.editMode=query['edit'];
+    });
+
+    //##### intializing the post data #####
     const postId = this.activeRouter.snapshot.params['postId'];
     if (postId) {
+      //By id
       this.postService.getPost(postId).toPromise()
         .then(result => {
           this.postData=result;
@@ -37,6 +46,7 @@ export class PostComponent implements OnInit {
         })
     }
     else {
+      //or from input
       this.initializePostData();
     }
   }
@@ -96,7 +106,7 @@ export class PostComponent implements OnInit {
   }
 
 
-
+  // ##### function to init the post data
   private initializePostData() {
 
     //make the postData with constractor to uses its function

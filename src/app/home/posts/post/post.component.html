@@ -1,5 +1,11 @@
 <app-error-message [errorMessage]="errorMessage"></app-error-message>
-<div *ngIf="postData" class="row  postSeparate">
+
+<div *ngIf="editMode">
+    <app-add-post [editMode]="editMode" [defulatData]="postData"></app-add-post>
+</div>
+
+
+<div *ngIf="postData && !editMode" class="row  postSeparate">
     <section class="col-12 card position-relative bg-grey pt-2 post">
 
         <!-- ##### Creator Part ##### -->

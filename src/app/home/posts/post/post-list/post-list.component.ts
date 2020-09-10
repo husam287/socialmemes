@@ -15,17 +15,24 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   onView(){
     this.router.navigate(['home','posts',this.postId]);
   }
+
+
   onEdit(){
     this.router.navigate(['home','posts',this.postId],{queryParams:{edit:true}});
   }
+
+
   onDelete(){
+    //##### confirm message #####
     if(!confirm('Are you shure to delete this post permanently ?!')){
       return;
     }
-    this.router.navigate(['home','posts',this.postId]);
+
+
     this.postService.deletePost(this.postId).toPromise()
     .then(()=>{
       this.router.navigate(['home','posts']);

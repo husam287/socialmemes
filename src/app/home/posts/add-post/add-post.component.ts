@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostsService } from 'src/app/shared/posts/posts.service';
+import { Post } from 'src/app/shared/posts/post.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-post',
@@ -12,13 +14,21 @@ export class AddPostComponent implements OnInit {
 fileName:string='Photo';
 selectedImage:File;
 
+@Input('editMode') editMode=false;
+@Input('defulatData') defaultData:Post; //defualt value while editing the post
+
 //##### message from server ######
 successMessage:string;
 failMessage=null;
 
-  constructor(private postService:PostsService) { }
+
+
+  constructor(private postService:PostsService,private router:Router) { }
 
   ngOnInit(): void {
+    if(this.editMode){
+      this.fileName='Click if you want to change photo';
+    }
   }
 
   onSubmit(form:NgForm){
@@ -28,6 +38,20 @@ failMessage=null;
     const formData=new FormData();
     formData.append('content',content);
     formData.append('image',this.selectedImage);
+
+    // ##### Editing the post ##### 
+    if(this.editMode){
+      this.postService.editPost(this.defaultData._id,formData).toPromise()
+      .then(message=>{
+        confirm(message.message);
+        this.router.navigate(['home','posts',this.defaultData._id])
+      })
+      .catch(err=>{
+        this.failMessage=err;
+      })
+      return;
+    }
+
 
     // ##### sending The Post #####
     this.postService.addPost(formData).toPromise()
