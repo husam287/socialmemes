@@ -1,16 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { domainName } from 'src/app/shared/domain';
 import { Post } from "src/app/shared/posts/post.model"
 import { UsersService } from 'src/app/shared/users/users.service';
 import { PostsService } from 'src/app/shared/posts/posts.service';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit,OnDestroy {
 
   domain = domainName;
   errorMessage=null;
@@ -20,14 +21,26 @@ export class PostComponent implements OnInit {
 
   editMode=false; 
 
+  subs1:Subscription;
+  subs2:Subscription;
+
+
   liked = false; //liked the post or not
   commentsIsShow = false; //if comments are shown or not
   
   constructor(private userAuth: UsersService, private postService: PostsService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
+    // #### recevieve post Data from observer #####
+   this.subs1= this.postService.post.subscribe(post=>{
+     console.log(post)
+      this.postData=post;
+    })
+
+
     //##### reading the query params if found
-    this.activeRouter.queryParams.subscribe((query:Params)=>{
+   this.subs2= this.activeRouter.queryParams.subscribe((query:Params)=>{
       this.editMode=query['edit'];
     });
 
@@ -49,6 +62,11 @@ export class PostComponent implements OnInit {
       //or from input
       this.initializePostData();
     }
+  }
+
+  ngOnDestroy(){
+    this.subs1.unsubscribe();
+    this.subs2.unsubscribe();
   }
 
   //##### Show-hide comment function #####

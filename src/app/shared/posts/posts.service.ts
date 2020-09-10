@@ -13,6 +13,8 @@ export class PostsService {
   domain=domainName;
 
   posts=new Subject<Post[]>();
+  post=new Subject<Post>();
+
 
   constructor(private http:HttpClient) { }
 
@@ -32,7 +34,7 @@ export class PostsService {
   }
 
   editPost(postId:string,formData:FormData){
-    return this.http.put<{'message':string}>(`${this.domain}posts/${postId}/edit`,formData)
+    return this.http.put<{'message':string,'updatedPost':Post}>(`${this.domain}posts/${postId}/edit`,formData)
     
   }
 

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { PostsService } from 'src/app/shared/posts/posts.service';
 import { Post } from 'src/app/shared/posts/post.model';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-post',
@@ -16,6 +17,7 @@ selectedImage:File;
 
 @Input('editMode') editMode=false;
 @Input('defulatData') defaultData:Post; //defualt value while editing the post
+
 //##### message from server ######
 successMessage:string;
 failMessage=null;
@@ -25,6 +27,10 @@ failMessage=null;
   constructor(private postService:PostsService,private router:Router) { }
 
   ngOnInit(): void {
+
+
+
+    //if in edit mode change default file name
     if(this.editMode){
       this.fileName='Click if you want to change photo';
     }
@@ -41,8 +47,9 @@ failMessage=null;
     // ##### Editing the post ##### 
     if(this.editMode){
       this.postService.editPost(this.defaultData._id,formData).toPromise()
-      .then(message=>{
-        confirm(message.message);
+      .then((result)=>{
+        this.postService.post.next(result.updatedPost);
+        confirm(result.message);
         this.router.navigate(['home','posts',this.defaultData._id])
       })
       .catch(err=>{
