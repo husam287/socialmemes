@@ -16,7 +16,6 @@ selectedImage:File;
 
 @Input('editMode') editMode=false;
 @Input('defulatData') defaultData:Post; //defualt value while editing the post
-
 //##### message from server ######
 successMessage:string;
 failMessage=null;
@@ -58,6 +57,8 @@ failMessage=null;
     .then(result=>{
       this.failMessage=null;
       this.successMessage=result.message;
+      //close the modal
+      document.getElementById('buttonToExit').click();
     })
     .catch(err=>{
       this.successMessage=null;

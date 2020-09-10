@@ -29,7 +29,7 @@
         <!-- Button to submit -->
         <div class="col text-right">
             <button *ngIf="editMode" class="btn btn-danger mr-2" type="button" [routerLink]="['../']">Cancel</button>
-            <button class="btn bg-pink-dark" type="submit" >{{editMode? 'Edit Post':'Add Post'}}</button>
+            <button class="btn bg-pink-dark" type="submit" [disabled]="!form.valid">{{editMode? 'Edit Post':'Add Post'}}</button>
         </div>
     </div>
 
