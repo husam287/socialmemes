@@ -17,7 +17,7 @@
                 <img *ngIf="currentUser" class="rounded-circle d-inline-block mr-2" [src]="domain + currentUser.image"
                     width="30px" height="30px">
                 <!-- input field -->
-                <input class="d-inline-block rounded-pill normalText form-control" type="text" placeholder="Add Comment"
+                <input class="d-inline-block rounded-pill normalText form-control" type="text" id="commentContent" placeholder="Add Comment"
                     onblur="placeholder='Add comment'" onfocus="placeholder=''" name="commentContent" ngModel
                     #commentContent="ngModel" required>
 

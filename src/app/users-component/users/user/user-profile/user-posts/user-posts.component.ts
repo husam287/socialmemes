@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params} from '@angular/router';
+
 import { PostsService } from 'src/app/shared/posts/posts.service';
 import { Post } from 'src/app/shared/posts/post.model';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-posts',
@@ -12,10 +13,22 @@ export class UserPostsComponent implements OnInit {
 
   userPosts:Post[];
   errorMessage=null;
-  constructor() { }
+  constructor(private activeRoute:ActivatedRoute,private postService:PostsService) { }
 
   ngOnInit(): void {
-    
+    //get params
+    this.activeRoute.parent.params.subscribe((params:Params)=>{
+      //get user's posts
+      this.postService.getAllUserPosts(params['userId']).toPromise()
+      .then(posts=>{
+        this.userPosts=posts;
+      })
+      .catch(err=>{
+        this.errorMessage=err;
+      })
+    })
+
+
   
   }
 

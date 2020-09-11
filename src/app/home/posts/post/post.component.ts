@@ -76,7 +76,8 @@ export class PostComponent implements OnInit,OnDestroy {
       //set time to wait untill comment appears to select it successfully
       //select the element by nth child to not select all classes when repeated by ngfor
       setTimeout(() => {
-        document.getElementsByClassName('comments')[this.indexOfPost].scrollIntoView({ block: 'center', behavior: 'smooth' })
+        document.getElementsByClassName('comments')[this.indexOfPost].scrollIntoView({ block: 'center', behavior: 'smooth' });
+
       }, 20);
     }
     else {
