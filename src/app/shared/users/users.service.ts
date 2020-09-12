@@ -51,7 +51,7 @@ export class UsersService {
 
 
   editUserInfo(formData:FormData,userId:string){
-   return this.http.put(`${domain}users/${userId}/edit`,formData);
+   return this.http.put<{'message':string,'user':userData}>(`${domain}users/${userId}/edit`,formData);
   }
 
   changePassword(userId:string,oldPassword:string,newPassword:string){

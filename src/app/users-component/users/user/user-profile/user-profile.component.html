@@ -1,51 +1,91 @@
 <main *ngIf="!!userData" class="container mt-5">
-    <!--User Data Section Section-->
-    <section class="row mb-3">
-        <div class="col-sm-3 col-12 text-center">
-            <img class="rounded-circle reddyShadow responsiveImage" [src]="domain+userData.image" alt="ProfilePic">
-            <a *ngIf="editMode" class="p-1 color-red-dark text-center" style="cursor: pointer;"><i class="fas fa-camera fa-2x"></i>    </a>
-        </div>
-        <div class="col-sm-9 col-12 reddyShadow p-4 scrollable" >
-            <!-- Name -->
-            <div class="row text-center">
-                <div class="col-12">
-                    <i *ngIf="editMode" class="fas fa-edit color-red-dark editIconPosition"></i>
-                    <small class="color-red-dark text-center">Name</small>
-                    <h4 class="text-dark text-center normalText w-100 text-break">{{userData.name}}</h4>
-                    <hr>
+    <!-- form in edit mode only -->
+    <form #editForm="ngForm" (ngSubmit)="onEditUser(editForm)">
+        <!--User Data Section Section-->
+        <section class="row mb-3">
+            <div class="col-sm-3 col-12 text-center">
+                <!-- profile image -->
+                <img class="rounded-circle reddyShadow responsiveImage" [src]="domain+userData.image" alt="ProfilePic" id="profilePic">
+                <!-- change photo icon -->
+                <label class="d-block" for="image">
+                    <a *ngIf="editMode" class="p-1  text-center small mb-3  color-red-dark">
+                        <i class="fas fa-camera fa-2x"> <small class="small ml-2">Change profile Picture</small></i>
+                    </a>
+                </label>
+                <input type="file" class="d-none" name="image" id="image" (change)="onSelectImage($event.target.files)">
+            </div>
+
+            <div class="col-sm-9 col-12 reddyShadow p-4 scrollable">
+                <!-- ##### Name ##### -->
+                <div class="row text-center">
+                    <div class="col-12">
+                        <!-- edit button -->
+                        <a *ngIf="editMode && !showNameInput" (click)="showNameInput=!showNameInput"><i class="fas fa-edit color-red-dark editIconPosition"></i></a>
+
+                        <!-- name text -->
+                        <small class="color-red-dark text-center">Name</small>
+                        <h4 *ngIf="!showNameInput" class="text-dark text-center normalText w-100 text-break">{{userData.name}}</h4>
+                        <!-- name input -->
+                        <input *ngIf="showNameInput" class="form-control form-control-plaintext form-control-lg normalText" type="text" name="name" [ngModel]="userData.name" #name="ngModel">
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- ##### Bio ##### -->
+                <div class="row text-center">
+                    <div class="col-12">
+                        <!-- edit button -->
+                        <a *ngIf="editMode && !showBioInput" (click)="showBioInput=!showBioInput"><i class="fas fa-edit color-red-dark editIconPosition"></i></a>
+
+                        <!-- bio text -->
+                        <small class="color-red-dark text-center">Personal Information</small>
+                        <p *ngIf="!showBioInput" class="text-dark text-center normalText text-break text-justify">{{userData.bio}}</p>
+                        <!-- bio input -->
+                        <textarea *ngIf="showBioInput" class="form-control form-control-plaintext normalText" value="dd" name="bio" cols="5" rows="3" [ngModel]="userData.bio" #bio="ngModel"></textarea>
+                        <hr>
+                    </div>
+                </div>
+                <!-- posts and memes number -->
+                <div class="row text-center">
+                    <div class="col-6 text-right">
+                        <small class="color-red-dark text-center d-inline-block p-2">Posts #</small>
+                        <p class="text-dark text-center text-break text-justify d-inline-block">
+                            {{userData.posts.length}}</p>
+                    </div>
+                    <div class="col-6 text-left">
+                        <small class="color-red-dark text-center d-inline-block p-2">Memes #</small>
+                        <p class="text-dark text-center text-break text-justify d-inline-block">
+                            {{userData.memes.length}}</p>
+                    </div>
                 </div>
             </div>
-            <!-- Bio -->
-            <div class="row text-center">
-                <div class="col-12">
-                    <i *ngIf="editMode" class="fas fa-edit color-red-dark editIconPosition"></i>
-                    <small class="color-red-dark text-center">Personal Information</small>
-                    <p class="text-dark text-center normalText text-break text-justify">{{userData.bio}}</p>
-                    <hr>
-                </div>
+        </section>
+        
+        <!-- ##### save and cancel button ##### -->
+        <section *ngIf="selectedImage || showNameInput || showBioInput" class="row my-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-secondary mx-3" type="button" (click)="onCancel()">Cancel</button>
+                <button class="btn btn-success mx-3" type="submit">Save Changes</button>
             </div>
-            <!-- posts and memes number -->
-            <div class="row text-center">
-                <div class="col-6 text-right">
-                    <small class="color-red-dark text-center d-inline-block p-2">Posts #</small>
-                    <p class="text-dark text-center text-break text-justify d-inline-block">{{userData.posts.length}}</p>
-                </div>
-                <div class="col-6 text-left">
-                    <small class="color-red-dark text-center d-inline-block p-2">Memes #</small>
-                    <p class="text-dark text-center text-break text-justify d-inline-block">{{userData.memes.length}}</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </form>
+
+
+
+    <!-- ##### edit changes feedback messages #####  -->
+    <app-success-message *ngIf="editMode" [successMessage]="successMessage"></app-success-message>
+    <app-error-message *ngIf="editMode" [errorMessage]="errorMessage"></app-error-message>
 
 
     <!--Posts and memes links-->
     <section *ngIf="!editMode" class="row mt-5">
         <div class="col-6">
-            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['posts']" routerLinkActive="reddyShadow bg-pink-dark">Posts</button>
+            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['posts']"
+                routerLinkActive="reddyShadow bg-pink-dark">Posts</button>
         </div>
         <div class="col-6">
-            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['memes']" routerLinkActive="reddyShadow bg-pink-dark">Memes</button>
+            <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['memes']"
+                routerLinkActive="reddyShadow bg-pink-dark">Memes</button>
         </div>
     </section>
 
