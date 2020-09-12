@@ -10,9 +10,13 @@ import { UserPostsComponent } from './users-component/users/user/user-profile/us
 import { UserMemesComponent } from './users-component/users/user/user-profile/user-memes/user-memes.component';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './home/posts/post/post.component';
+import { UserSettingComponent } from './users-component/user-setting/user-setting.component';
 
 const routes: Routes = [
   {path:'',component:WelcomeComponent,pathMatch:'full'},
+
+  //########## setting routes ##########
+  {path:'setting',component:UserSettingComponent},
 
   //########## Home routes ##########
   {path:'home',component:HomeComponent,children:[

@@ -1,13 +1,15 @@
 <main *ngIf="!!userData" class="container mt-5">
     <!--User Data Section Section-->
     <section class="row mb-3">
-        <div class="col-3 text-left">
+        <div class="col-sm-3 col-12 text-center">
             <img class="rounded-circle reddyShadow responsiveImage" [src]="domain+userData.image" alt="ProfilePic">
+            <a *ngIf="editMode" class="p-1 color-red-dark text-center" style="cursor: pointer;"><i class="fas fa-camera fa-2x"></i>    </a>
         </div>
-        <div class="col-9 reddyShadow p-4 scrollable" >
+        <div class="col-sm-9 col-12 reddyShadow p-4 scrollable" >
             <!-- Name -->
             <div class="row text-center">
                 <div class="col-12">
+                    <i *ngIf="editMode" class="fas fa-edit color-red-dark editIconPosition"></i>
                     <small class="color-red-dark text-center">Name</small>
                     <h4 class="text-dark text-center normalText w-100 text-break">{{userData.name}}</h4>
                     <hr>
@@ -16,6 +18,7 @@
             <!-- Bio -->
             <div class="row text-center">
                 <div class="col-12">
+                    <i *ngIf="editMode" class="fas fa-edit color-red-dark editIconPosition"></i>
                     <small class="color-red-dark text-center">Personal Information</small>
                     <p class="text-dark text-center normalText text-break text-justify">{{userData.bio}}</p>
                     <hr>
@@ -37,7 +40,7 @@
 
 
     <!--Posts and memes links-->
-    <section class="row mt-5">
+    <section *ngIf="!editMode" class="row mt-5">
         <div class="col-6">
             <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['posts']" routerLinkActive="reddyShadow bg-pink-dark">Posts</button>
         </div>
@@ -45,6 +48,8 @@
             <button class="btn btn-block bg-pink-light text-dark" [routerLink]="['memes']" routerLinkActive="reddyShadow bg-pink-dark">Memes</button>
         </div>
     </section>
+
+
 
     <!-- ##### user posts or memes Section ##### -->
     <main>

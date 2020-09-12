@@ -5,6 +5,7 @@ import { User, userData } from './user.model';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { domainName } from '../domain';
+
 const domain = domainName;
 
 interface authData {
@@ -43,6 +44,14 @@ export class UsersService {
 
   logIn(email: string, password: string) {
     return this.handelAuth(email, password);
+  }
+
+
+  //########## to get a user by id ##########
+
+
+  editUserInfo(formData:FormData,userId:string){
+   return this.http.put(`${domain}users/${userId}/edit`,formData);
   }
 
   

@@ -1,0 +1,28 @@
+<div class="row  mt-5">
+    <div class="col-12 col-sm-8 mx-auto">
+
+        <div class="list-group list-group-flush text-center">
+            <a class="list-group-item list-group-item-action" [routerLink]="['/users',userId]" [queryParams]="{edit:true}">
+                Edit My Profile
+            </a>
+            <a class="list-group-item list-group-item-action" data-toggle="modal"
+            data-target="#changePassword">
+                Change My Password
+            </a>
+            <a class="list-group-item list-group-item-danger list-group-item-action" data-toggle="modal"
+                data-target="#deleteAccount">
+                Remove My Account
+            </a>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<!-- ##### Delete Account Modal [#deleteAccount] ###### -->
+<app-delete-account [userId]="userId"></app-delete-account>
+
+<!-- ##### chaneg password modal [#changePassword] ###### -->
+<app-change-password [userId]="userId"></app-change-password>

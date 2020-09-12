@@ -7,4 +7,19 @@
     height: 17vw;
 }
 
+.editIconPosition{
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+
+}
+
+@media only screen and (max-width:575.5px){
+    .responsiveImage{
+        width: 25vw;
+        height: 25vw;
+        margin-bottom: 1rem;
+    }
+}
+
 

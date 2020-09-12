@@ -1,4 +1,7 @@
+<main class="mt-5">
+    <app-error-message [errorMessage]="errorMessage"></app-error-message>
 
-<div *ngIf="userPosts.length>=0">
-    <app-post *ngFor="let post of userPosts;let i=index" [postData]="post" [indexOfPost]="i"></app-post>
-</div>
+    <div *ngIf="userPosts&&userPosts.length>=0">
+        <app-post *ngFor="let post of userPosts;let i=index" [postData]="post" [indexOfPost]="i"></app-post>
+    </div>
+</main>

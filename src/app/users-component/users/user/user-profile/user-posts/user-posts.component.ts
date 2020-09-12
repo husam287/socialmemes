@@ -25,6 +25,7 @@ export class UserPostsComponent implements OnInit {
       })
       .catch(err=>{
         this.errorMessage=err;
+        console.log(err)
       })
     })
 

@@ -30,6 +30,9 @@ import { CommentComponent } from './home/posts/post/comments/comment/comment.com
 import { LoaderComponent } from './shared/loader/loader.component';
 import { AddPostComponent } from './home/posts/add-post/add-post.component';
 import { PostListComponent } from './home/posts/post/post-list/post-list.component';
+import { UserSettingComponent } from './users-component/user-setting/user-setting.component';
+import { DeleteAccountComponent } from './users-component/user-setting/delete-account/delete-account.component';
+import { ChangePasswordComponent } from './users-component/user-setting/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { PostListComponent } from './home/posts/post/post-list/post-list.compone
     LoaderComponent,
     AddPostComponent,
     PostListComponent,
+    UserSettingComponent,
+    DeleteAccountComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,28 +11,42 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit,OnDestroy {
+export class UserProfileComponent implements OnInit, OnDestroy {
 
-  userData:userData;
-  domain=domainName;
+  userData: userData;
+  domain = domainName;
 
-  sub1:Subscription;
-  constructor(private activeRouter:ActivatedRoute,private auth:UsersService) { }
+  sub1: Subscription;
+
+  editMode = false;
+  constructor(private activeRouter: ActivatedRoute, private auth: UsersService) { }
 
   ngOnInit(): void {
-    //##### Subscribe to url #####
-    this.sub1=this.activeRouter.params.subscribe(
-    (result:Params)=>{
+    //##### Subscribe to query params #####
+    this.sub1 = this.activeRouter.queryParams.subscribe((result: Params) => {
+
+      //gettin userId from params
+      let userId;
+      userId = this.activeRouter.snapshot.params['userId'];
+      
       //Getting the user data of user id
-      this.auth.getUserInfo(result['userId']).toPromise()
-      .then(userDoc=>{
-        this.userData=userDoc;
-      })
-    });
-    
+      this.auth.getUserInfo(userId).toPromise()
+        .then(userDoc => {
+          this.userData = userDoc;
+        })
+
+      //if not edit mode
+      if (!result['edit']) {
+        this.editMode = false;
+      }
+      else {
+        this.editMode = true;
+      }
+    })
+
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub1.unsubscribe();
   }
 

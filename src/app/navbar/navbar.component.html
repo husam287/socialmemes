@@ -62,7 +62,7 @@
 			<!-- DropList -->
 			<div class="dropdown-menu" aria-labelledby="navbarDropdownOffset">
 				<a class="dropdown-item" [routerLink]="userData? ['/users',userData._id]:''">Profile</a>
-				<a class="dropdown-item" href="#">Setting</a>
+				<a class="dropdown-item" [routerLink]="['/setting']">Setting</a>
 				<a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
 			</div>
 		</li>

@@ -109,19 +109,7 @@
                         <!-- Header of the likes -->
                         <h6 class="modal-header text-center">Likes List</h6>
                         <div class="modal-content ">
-                            <div class="list-group" style="overflow-y: scroll; max-height: 70vh;">
-                                <a *ngFor="let user of postData.likes" data-dismiss="modal"
-                                    [routerLink]="['/users',user._id]"
-                                    class="list-group-item list-group-item-action text-left">
-                                    <!-- Creator Image -->
-                                    <img class="rounded-circle reddyShadow " [src]="domain+user.image"
-                                        style="cursor: pointer;" alt="post creator image" width="70px" height="70px">
-                                    <!-- Creator Name -->
-                                    <a class="h5 pt-2 pl-3 color-red-light hoverFix"
-                                        style="cursor: pointer;">{{user.name}}</a>
-                                </a>
-
-                            </div>
+                            <app-likes [likes]="postData.likes"></app-likes>
                         </div>
                     </div>
                 </div>
