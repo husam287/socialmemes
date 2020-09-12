@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { UsersService } from 'src/app/shared/users/users.service';
 
 @Component({
   selector: 'app-delete-account',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class DeleteAccountComponent implements OnInit {
 
   @Input('userId') userId:string;
-  constructor() { }
+  constructor(private auth:UsersService) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +18,8 @@ export class DeleteAccountComponent implements OnInit {
 
   onDeleteAccount(deleteAccountForm:NgForm){
     console.log('deleteed!!!!!!!!!!!!');
+    document.getElementById('close').click();
+    this.auth.logOut();
   }
 
 }

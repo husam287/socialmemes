@@ -54,6 +54,10 @@ export class UsersService {
    return this.http.put(`${domain}users/${userId}/edit`,formData);
   }
 
+  changePassword(userId:string,oldPassword:string,newPassword:string){
+    return this.http.put<{'message':string}>(`${domain}users/${userId}/changePassword`,{oldPassword:oldPassword,newPassword:newPassword});
+  }
+
   
   //########## to get a user by id ##########
 

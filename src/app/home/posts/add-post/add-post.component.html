@@ -8,9 +8,7 @@
 
     <!-- ##### messages ##### -->
     <div  *ngIf="failMessage || successMessage">
-        <div *ngIf="successMessage" class="alert alert-success" role="alert">
-            {{successMessage}}
-        </div>
+        <app-success-message [successMessage]="successMessage"></app-success-message>
         <app-error-message [errorMessage]="failMessage"></app-error-message>
     </div>
 

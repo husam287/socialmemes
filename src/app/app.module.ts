@@ -33,6 +33,7 @@ import { PostListComponent } from './home/posts/post/post-list/post-list.compone
 import { UserSettingComponent } from './users-component/user-setting/user-setting.component';
 import { DeleteAccountComponent } from './users-component/user-setting/delete-account/delete-account.component';
 import { ChangePasswordComponent } from './users-component/user-setting/change-password/change-password.component';
+import { SuccessMessageComponent } from './shared/success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ChangePasswordComponent } from './users-component/user-setting/change-p
     UserSettingComponent,
     DeleteAccountComponent,
     ChangePasswordComponent,
+    SuccessMessageComponent,
   ],
   imports: [
     BrowserModule,
