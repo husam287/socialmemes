@@ -105,6 +105,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   onSelectImage(files:FileList){
     this.selectedImage=files[0];
+    this.errorMessage=null;
+    this.successMessage=null;
     
     //##### preview selected image in profile image of the user ######
     let reader=new FileReader();

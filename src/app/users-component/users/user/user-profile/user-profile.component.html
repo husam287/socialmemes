@@ -39,7 +39,7 @@
 
                         <!-- bio text -->
                         <small class="color-red-dark text-center">Personal Information</small>
-                        <p *ngIf="!showBioInput" class="text-dark text-center normalText text-break text-justify">{{userData.bio}}</p>
+                        <p *ngIf="!showBioInput" class="text-dark text-center normalText text-break text-justify multiLine" >{{userData.bio}}</p>
                         <!-- bio input -->
                         <textarea *ngIf="showBioInput" class="form-control form-control-plaintext normalText" value="dd" name="bio" cols="5" rows="3" [ngModel]="userData.bio" #bio="ngModel"></textarea>
                         <hr>
@@ -62,7 +62,7 @@
         </section>
         
         <!-- ##### save and cancel button ##### -->
-        <section *ngIf="selectedImage || showNameInput || showBioInput" class="row my-5">
+        <section *ngIf="selectedImage || showNameInput || showBioInput" class="row my-3">
             <div class="col-12 text-center">
                 <button class="btn btn-secondary mx-3" type="button" (click)="onCancel()">Cancel</button>
                 <button class="btn btn-success mx-3" type="submit">Save Changes</button>
