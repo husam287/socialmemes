@@ -3,7 +3,7 @@
     <div class="col-12">
         <a class="text-decoration-none" [routerLink]="['/users',commentData.commentOwner._id]">
             <!-- image -->
-            <img class="rounded-circle d-inline-block reddyShadow" [src]="domain + commentData.commentOwner.image"
+            <img class="rounded-circle d-inline-block reddyShadow" [src]="commentData.commentOwner.image"
                 alt="Comment owner photo" height="40px" width="40px">
             <!-- name -->
             <h6 class="d-inline-block ml-2 color-red-light hoverFix">{{commentData.commentOwner.name}}</h6>

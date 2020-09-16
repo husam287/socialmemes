@@ -14,7 +14,7 @@
         <div class="col-12">
             <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="position-relative">
                 <!-- current user image -->
-                <img *ngIf="currentUser" class="rounded-circle d-inline-block mr-2" [src]="domain + currentUser.image"
+                <img *ngIf="currentUser" class="rounded-circle d-inline-block mr-2" [src]="currentUser.image"
                     width="30px" height="30px">
                 <!-- input field -->
                 <input class="d-inline-block rounded-pill normalText form-control" type="text" id="commentContent" placeholder="Add Comment"
