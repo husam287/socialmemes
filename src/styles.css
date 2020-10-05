@@ -122,5 +122,5 @@ red-light-color: #c36a52
   }
 
 .multiLine{
-    white-space: pre;
+    white-space:pre-line;
 }
