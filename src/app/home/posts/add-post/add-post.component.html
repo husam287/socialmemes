@@ -12,8 +12,8 @@
         <app-error-message [errorMessage]="failMessage"></app-error-message>
     </div>
 
-    <!-- ##### image of the post ##### -->
-    <div class="form-row">
+    <!-- ##### image of the post and buttons ##### -->
+    <div *ngIf="!isLoading" class="form-row">
         <!-- image input -->
         <div class="col text-left">
             <label for="imageInput" style="cursor: pointer;">
@@ -27,8 +27,10 @@
         <!-- Button to submit -->
         <div class="col text-right">
             <button *ngIf="editMode" class="btn btn-danger mr-2" type="button" [routerLink]="['../']">Cancel</button>
-            <button class="btn bg-pink-dark" type="submit" [disabled]="!form.valid">{{editMode? 'Edit Post':'Add Post'}}</button>
+            <button  class="btn bg-pink-dark" type="submit" [disabled]="!form.valid">{{editMode? 'Edit Post':'Add Post'}}</button>
         </div>
     </div>
 
+    <!-- ##### Loader ##### -->    
+    <app-loader *ngIf="isLoading"></app-loader>
 </form>

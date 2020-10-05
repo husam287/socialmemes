@@ -22,6 +22,10 @@ selectedImage:File;
 successMessage:string;
 failMessage=null;
 
+//##### Loading flag ######
+isLoading=false;
+
+
 
 
   constructor(private postService:PostsService,private router:Router) { }
@@ -37,6 +41,7 @@ failMessage=null;
   }
 
   onSubmit(form:NgForm){
+    this.isLoading=true;
     const content=form.value.content; //content of the post
     
     //#### Adjust form data #####
@@ -48,11 +53,22 @@ failMessage=null;
     if(this.editMode){
       this.postService.editPost(this.defaultData._id,formData).toPromise()
       .then((result)=>{
-        this.postService.post.next(result.updatedPost);
-        confirm(result.message);
+        this.isLoading=false;
+
+        //Intialize the post
+        const x=result.updatedPost;
+        const post = new Post(x._id,x.creator,x.content,x.comments,x.likes,x.createdAt,x.updatedAt,x.image);
+
+        this.postService.post.next(post);
+
+        //clear form
+        form.reset();
+        
         this.router.navigate(['home','posts',this.defaultData._id])
       })
       .catch(err=>{
+        this.isLoading=false;
+
         this.failMessage=err;
       })
       return;
@@ -62,12 +78,21 @@ failMessage=null;
     // ##### sending The Post #####
     this.postService.addPost(formData).toPromise()
     .then(result=>{
+      this.isLoading=false;
+
+      //clearing system messages
       this.failMessage=null;
-      this.successMessage=result.message;
+      this.successMessage=null;
+
+      //clear form
+      form.reset();
+
       //close the modal
       document.getElementById('buttonToExit').click();
     })
     .catch(err=>{
+      this.isLoading=false;
+
       this.successMessage=null;
       this.failMessage=err;
     })
