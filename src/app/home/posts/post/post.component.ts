@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, HostListener } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { domainName } from 'src/app/shared/domain';
 import { Post } from "src/app/shared/posts/post.model"
 import { UsersService } from 'src/app/shared/users/users.service';
 import { PostsService } from 'src/app/shared/posts/posts.service';
-import { Subject, Subscription } from 'rxjs';
-
+import { Subscription } from 'rxjs';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -67,6 +67,11 @@ export class PostComponent implements OnInit,OnDestroy {
   ngOnDestroy(){
     this.subs1.unsubscribe();
     this.subs2.unsubscribe();
+  }
+  
+
+  @HostListener('window:popstate') closeModal(){
+    $('.close').click();
   }
 
   //##### Show-hide comment function #####
