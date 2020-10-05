@@ -8,6 +8,7 @@ import { UsersService } from '../../shared/users/users.service';
 })
 export class FormComponent implements OnInit {
 
+  message=null;
   errorMessage=null; //The error message for any server errors
   login = true; /*to switch between log in and sign up*/
   spanHide = [true, true, true, true]; /*for the 4 spans in the inputs*/
@@ -43,7 +44,10 @@ export class FormComponent implements OnInit {
     //##### Sign up Case #####
     if (!this.login) {
       this.auth.signUp(name,email,password).toPromise()
-      .then()
+      .then((result:{"message":string,"userId":string})=>{
+        this.message=result.message;
+        this.isLoading=false; //finish loading
+      })
       .catch(err=>{
         this.errorMessage=err;
         this.isLoading=false; //finish loading

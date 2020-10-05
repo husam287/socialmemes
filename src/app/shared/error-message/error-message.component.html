@@ -1,3 +1,5 @@
 <div *ngIf="errorMessage" class="alert alert-danger text-center">
-    <p class="mb-0">{{errorMessage.error.message? errorMessage.error.message:errorMessage.statusText}}</p>
+    <p class="mb-0">
+        {{errorMessage.error.message? errorMessage.error.message:errorMessage.statusText}}
+    </p>
 </div>
