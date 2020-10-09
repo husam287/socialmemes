@@ -1,7 +1,7 @@
 <div class="container">
     <!-- ##### Users Section ##### -->
     <div *ngIf="!errorMessage" class="row mt-4">
-        <div  *ngFor="let user of users" class="col-12 col-sm-8 mx-auto my-2">
+        <div  *ngFor="let user of users" class="col-12 col-l-8 mx-auto my-2">
             <app-user [userData]="user"></app-user>
         </div>
     </div>

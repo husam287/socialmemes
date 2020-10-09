@@ -1,9 +1,9 @@
 <!-- ##### a clickable user field ##### -->
 <div class="row mx-auto position-relative reddyShadow bg-pink-light" [routerLink]="[userData._id]" style="cursor: pointer;">
     <!-- profile Photo -->
-    <div>
+    <div class="col-12">
         <img class="rounded-circle ml-2 reddyShadow" [src]="userData.image" alt="ProfilePic" height="64px" width="64px">
-          <a class="h3 text-decoration-none ml-3 text-dark vertical-center">{{userData.name}}</a>
+          <a class="h5 text-decoration-none ml-2 w-50 text-dark vertical-center">{{userData.name}}</a>
     </div>
 
     <!--Data Numbers -->
