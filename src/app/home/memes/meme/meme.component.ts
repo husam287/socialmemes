@@ -13,7 +13,10 @@ import { MemesService } from '../../../shared/memes/memes.service';
 export class MemeComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalCloseButton') modalCloseButton: ElementRef; //reference to close button in the photo modal
-  @ViewChild('ReactListClose') ReactListClose: ElementRef;
+  @ViewChild('LikeReactListClose') LikeReactListClose: ElementRef;
+  @ViewChild('HahaReactListClose') HahaReactListClose: ElementRef;
+  @ViewChild('AngryReactListClose') AngryReactListClose: ElementRef;
+
   
   errorMessage: string; // Error Message
 
@@ -119,7 +122,10 @@ export class MemeComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.modalCloseButton.nativeElement.click();
-    this.ReactListClose.nativeElement.click();
+    this.LikeReactListClose.nativeElement.click();
+    this.HahaReactListClose.nativeElement.click();
+    this.AngryReactListClose.nativeElement.click();
+
   }
 
   //##### To remove react ######

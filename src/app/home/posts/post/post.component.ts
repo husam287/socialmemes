@@ -22,6 +22,7 @@ export class PostComponent implements OnInit,OnDestroy {
   editMode=false;
 
   @ViewChild('modalCloseButton') modalCloseButton:ElementRef; //reference to close button in the modal
+  @ViewChild('LikeCloseButton') LikeCloseButton:ElementRef;
 
   subs1:Subscription;
   subs2:Subscription;
@@ -73,6 +74,7 @@ export class PostComponent implements OnInit,OnDestroy {
     this.subs2.unsubscribe();
 
     this.modalCloseButton.nativeElement.click();
+    this.LikeCloseButton.nativeElement.click();
   }
   
 

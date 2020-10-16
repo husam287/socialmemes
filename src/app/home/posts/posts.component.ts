@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { PostsService } from '../../shared/posts/posts.service'
 import { domainName } from 'src/app/shared/domain';
 import { Post } from 'src/app/shared/posts/post.model';
@@ -12,6 +12,8 @@ export class PostsComponent implements OnInit,OnDestroy {
 
   posts:Post[];
   subs:Subscription;
+
+  @ViewChild('AddPostCloseButton') AddPostCloseButton:ElementRef
 
   constructor(private postsService:PostsService) { }
 
@@ -33,6 +35,8 @@ export class PostsComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(){
     this.subs.unsubscribe();
+    this.AddPostCloseButton.nativeElement.click();
+
   }
 
 }
