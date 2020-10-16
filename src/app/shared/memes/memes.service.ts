@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { domainName } from '../domain';
-import { Meme } from '../memes/meme.model';
-import { stringify } from 'querystring';
+import { Meme, React } from '../memes/meme.model';
+import { map } from 'rxjs/operators';
 
 
 
@@ -11,39 +11,73 @@ import { stringify } from 'querystring';
 })
 export class MemesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  addMeme(meme:Meme){
-    return this.http.post<Meme>(`${domainName}memes/add`,meme);
+  addMeme(formData:FormData) {
+    return this.http.post<{"message":string,"meme":Meme}>(`${domainName}memes/add`, formData);
   }
 
-  getMemes(){
+  getMemes() {
     return this.http.get<Meme[]>(`${domainName}memes/getAll`);
   }
 
-  getMeme(id:string){
-    return this.http.get<Meme>(`${domainName}memes/${id}/get`);
+  getMeme(memeId: string) {
+    return this.http.get<Meme>(`${domainName}memes/${memeId}/get`);
   }
 
-  deleteMeme(id:string){
-    return this.http.delete<{"message":string}>(`${domainName}memes/${id}/delete`);
+  deleteMeme(memeId: string) {
+    return this.http.delete<{ "message": string }>(`${domainName}memes/${memeId}/delete`);
   }
 
-  reactLike(id:string){
-    return this.http.post<{"message":string, "meme":Meme}>(`${domainName}memes/${id}/reactLike`,null);
+  reactLike(memeId: string) {
+    return this.http.post<{ "message": string, "meme": Meme }>(`${domainName}memes/${memeId}/reactLike`, null);
   }
 
-  reactHaha(id:string){
-    return this.http.post<{"message":string, "meme":Meme}>(`${domainName}memes/${id}/reactHaha`,null);
+  reactHaha(memeId: string) {
+    return this.http.post<{ "message": string, "meme": Meme }>(`${domainName}memes/${memeId}/reactHaha`, null);
   }
 
-  reactAngry(id:string){
-    return this.http.post<{"message":string, "meme":Meme}>(`${domainName}memes/${id}/reactAngry`,null);
+  reactAngry(memeId: string) {
+    return this.http.post<{ "message": string, "meme": Meme }>(`${domainName}memes/${memeId}/reactAngry`, null);
   }
 
-  removeReact(id:string){
-    return this.http.delete<{"message":String, "meme":Meme}>(`${domainName}memes/${id}/removeReact`);
+  removeReact(memeId: string) {
+    return this.http.delete<{ "message": String, "meme": Meme }>(`${domainName}memes/${memeId}/removeReact`);
   }
+  
+  getUserMemes(userId:string){
+    return this.getMemes().pipe(
+      map(i=>{
+        return i.filter((value)=>{
+          return value.creator._id===userId;
+        })
+      })
+    )
+  }
+
+  getReactsDetails(reacts: React[]) {
+
+    // Filtering
+    const likeList = reacts.filter((react) => {
+      return react.reactType === 'like';
+    })
+
+    const hahaList = reacts.filter((react) => {
+      return react.reactType === 'haha';
+    })
+
+    const angryList = reacts.filter((react) => {
+      return react.reactType === 'angry';
+    })
+
+
+    // Sending result
+    return { likeList: likeList, hahaList: hahaList, angryList: angryList };
+
+
+  }
+
+
 
 
 }

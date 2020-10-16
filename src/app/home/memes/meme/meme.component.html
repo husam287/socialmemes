@@ -55,30 +55,130 @@
         <!-- ##### Reacts part ##### -->
         <div class="row mt-3">
             <!-- like part -->
-            <div class="col-4 mb-2 text-center">
-                <div class="color-red-dark">
-                    Like [ {{memeData.reacts.length}} ]
+            <div class="col-4 p-2 text-center border">
+                <div class="color-red-dark" data-toggle="modal" [attr.data-target]="'#likelist'+ memeData._id"
+                style="cursor: pointer;">
+                    Like [ {{likeReact.list.length}} ]
                 </div>
-                <img src="assets/photos/true.png" (click)="onLike(memeData._id)" [ngClass]="like? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
-                    alt="true-icon" style="cursor: pointer;">
+                <img class="d-inline-block" src="assets/photos/true.png" (click)="onLike(memeData._id)"
+                    [ngClass]="likeReact.clicked? 'reddyShadow likeReact':''" class="rounded-circle p-1" width="100px"
+                    height="100px" alt="true-icon" style="cursor: pointer;">
             </div>
             <!-- haha part -->
-            <div class="col-4 mb-2 text-center">
-                <div class="color-red-dark">
-                    Haha [ {{memeData.reacts.length}} ]
+            <div class="col-4 p-2 text-center border">
+                <div class="color-red-dark" data-toggle="modal" [attr.data-target]="'#hahalist'+ memeData._id"
+                style="cursor: pointer;">
+                    Haha [ {{hahaReact.list.length}} ]
                 </div>
-                <img src="assets/photos/haha.png" (click)="onHaha(memeData._id)" [ngClass]="haha? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
-                    alt="haha-icon" style="cursor: pointer;">
+                <img src="assets/photos/haha.png" (click)="onHaha(memeData._id)"
+                    [ngClass]="hahaReact.clicked? 'reddyShadow hahaReact':''" class="rounded-circle p-1" width="100px"
+                    height="100px" alt="haha-icon" style="cursor: pointer;">
             </div>
             <!-- angry part -->
-            <div class="col-4 mb-2 text-center">
-                <div class="color-red-dark d-">
-                    Angry [ {{memeData.reacts.length}} ]
+            <div class="col-4 p-2 text-center border">
+                <div class="color-red-dark" data-toggle="modal" [attr.data-target]="'#angrylist'+ memeData._id"
+                style="cursor: pointer;">
+                    Angry [ {{angryReact.list.length}} ]
                 </div>
-                <img src="assets/photos/angry.png" (click)="onAngry(memeData._id)" [ngClass]="angry? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
-                    alt="angry-icon" style="cursor: pointer;">
+                <img src="assets/photos/angry.png" (click)="onAngry(memeData._id)"
+                    [ngClass]="angryReact.clicked? 'reddyShadow angryReact':''" class="rounded-circle p-1" width="100px"
+                    height="100px" alt="angry-icon" style="cursor: pointer;">
             </div>
 
         </div>
     </section>
+</div>
+
+
+<!-- ###################
+######## MODALS ########
+######################## -->
+
+
+<!--photo Modal-->
+<div class="modal fade" [attr.id]="'id'+memeData._id" tabindex="-1"
+aria-labelledby="openPhotoLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <!-- close button -->
+            <button #modalCloseButton type="button" id="close1" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- Opened Image -->
+            <img class="card-img-bottom" [src]="memeData.image? memeData.image:''" alt="post photo"
+                style="height: auto;width: 100%;">
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- ##### like list model #####-->
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'likelist'+memeData._id" tabindex="-1"
+    aria-labelledby="openPhotoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <!-- close button -->
+                <button #ReactListClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- Header of the likes -->
+                <h6>
+                    <img class="rounded-circle" src="assets/photos/true.png" alt="like-icon" width="50px" height="50px">
+                    <h6 class="d-inline"> Like React List</h6>
+                </h6>
+                <div class="modal-content ">
+                    <app-reacts [reacts]="likeReact.list"></app-reacts>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ##### haha list model #####-->
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'hahalist'+memeData._id" tabindex="-1"
+    aria-labelledby="openPhotoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <!-- close button -->
+                <button #ReactListClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- Header of the likes -->
+                <h6>
+                    <img class="rounded-circle" src="assets/photos/haha.png" alt="haha-icon" width="50px" height="50px">
+                    <h6 class="d-inline"> Haha React List</h6>
+                </h6>
+                <div class="modal-content ">
+                    <app-reacts [reacts]="hahaReact.list"></app-reacts>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ##### angry list model #####-->
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'angrylist'+memeData._id" tabindex="-1"
+    aria-labelledby="openPhotoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <!-- close button -->
+                <button #ReactListClose type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- Header of the likes -->
+                <div>
+                    <img class="rounded-circle" src="assets/photos/angry.png" alt="angry-icon" width="50px" height="50px">
+                    <h6 class="d-inline"> Angry React List</h6>
+                </div>
+                <div class="modal-content ">
+                    <app-reacts [reacts]="angryReact.list"></app-reacts>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

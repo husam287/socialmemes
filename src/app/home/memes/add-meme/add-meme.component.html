@@ -1,0 +1,30 @@
+<form class="mt-2" (ngSubmit)="onSubmit()">
+    
+    <!-- ##### messages ##### -->
+    <div  *ngIf="failMessage || successMessage">
+        <app-success-message [successMessage]="successMessage"></app-success-message>
+        <app-error-message [errorMessage]="failMessage"></app-error-message>
+    </div>
+
+    <!-- ##### image of the post and buttons ##### -->
+    <div *ngIf="!isLoading" class="form-row">
+        <img #imageRef [ngClass]="selectedImage? 'd-block':'d-none'" class="mb-3" id="displayedImage" src="" alt="loaded-img" style="width: 100%;">
+        <!-- image input -->
+        <div class="col text-left">
+            <label for="imageInput" style="cursor: pointer;">
+                <i class="fas fa-camera fa-2x color-red-dark"></i>
+                <p class="m-0 position-relative d-inline ml-2 text-dark" style="bottom: 0.3rem;">{{fileName}}</p>
+            </label>
+            <!-- displayed none -->
+            <input class="d-none" name="image" type="file" id="imageInput" (change)="onChange($event.target.files)">
+        </div>
+
+        <!-- Button to submit -->
+        <div class="col text-right">
+            <button  class="btn bg-pink-dark" type="submit" [disabled]="!selectedImage">Add Meme</button>
+        </div>
+    </div>
+
+    <!-- ##### Loader ##### -->    
+    <app-loader *ngIf="isLoading"></app-loader>
+</form>

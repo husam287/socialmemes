@@ -37,6 +37,7 @@ import { SuccessMessageComponent } from './shared/success-message/success-messag
 import { MemeComponent } from './home/memes/meme/meme.component';
 import { ReactsComponent } from './home/memes/meme/reacts/reacts.component';
 import { MemeListComponent } from './home/memes/meme/meme-list/meme-list.component';
+import { AddMemeComponent } from './home/memes/add-meme/add-meme.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { MemeListComponent } from './home/memes/meme/meme-list/meme-list.compone
     MemeComponent,
     ReactsComponent,
     MemeListComponent,
+    AddMemeComponent,
   ],
   imports: [
     BrowserModule,

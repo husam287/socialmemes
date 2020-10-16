@@ -1,1 +1,8 @@
-<p>user-memes works!</p>
+<main class="mt-5 col-12 col-sm-8 mx-auto">
+    <app-error-message [errorMessage]="errorMessage"></app-error-message>
+
+    <div *ngIf="userMemes&&userMemes.length>=0">
+        <app-meme *ngFor="let meme of userMemes;let i=index" [memeData]="meme"></app-meme>
+    </div>
+</main>
+

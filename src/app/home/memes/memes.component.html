@@ -1,2 +1,35 @@
-<!--##### Memes #####-->
-<app-meme *ngFor="let meme of memes" [memeData]="meme"></app-meme>
+<main>
+    <!-- ##### Add Posts ##### -->
+    <div class="text-center mt-2">
+        <a class="color-red-dark" data-target="#memeForm" data-toggle="modal" style="cursor: pointer;">
+            <i class="far fa-plus-square fa-2x "></i>
+            <h6>Add A Meme</h6>
+        </a>
+    </div>
+
+
+    <!-- ##### Modal of add posts ##### -->
+    <div class="modal fade" style="height: 100vh; width: 100vw;" id="memeForm" tabindex="-1"
+        aria-labelledby="openPhotoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <!-- close button -->
+                    <button #closeButton type="button" class="close" data-dismiss="modal" aria-label="Close" id="buttonToExit">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <!-- Header of add posts -->
+                    <h6 class="modal-header text-center color-red-dark">Add Meme</h6>
+                    <div class="modal-content p-3 border-0">
+                        <!-- Add post component -->
+                        <app-add-meme></app-add-meme>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--##### Memes #####-->
+    <app-meme *ngFor="let meme of memes" [memeData]="meme"></app-meme>
+
+</main>
