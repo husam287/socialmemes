@@ -1,0 +1,13 @@
+<div class="list-group scrollable" style=" max-height: 70vh;">
+    <a *ngFor="let react of reacts" data-dismiss="modal"
+        [routerLink]="['/users',react.reactOwner._id]"
+        class="list-group-item list-group-item-action text-left">
+        <!-- Creator Image -->
+        <img class="rounded-circle reddyShadow " [src]="react.reactOwner.image"
+            style="cursor: pointer;" alt="post creator image" width="70px" height="70px">
+        <!-- Creator Name -->
+        <a class="h5 pt-2 pl-3 color-red-light hoverFix"
+            style="cursor: pointer;">{{react.reactOwner.name}}</a>
+    </a>
+
+</div>

@@ -11,6 +11,7 @@ import { UserMemesComponent } from './users-component/users/user/user-profile/us
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './home/posts/post/post.component';
 import { UserSettingComponent } from './users-component/user-setting/user-setting.component';
+import { MemeComponent } from './home/memes/meme/meme.component';
 
 const routes: Routes = [
   {path:'',component:WelcomeComponent,pathMatch:'full'},
@@ -21,9 +22,14 @@ const routes: Routes = [
   //########## Home routes ##########
   {path:'home',component:HomeComponent,children:[
     {path:'',redirectTo:'/home/posts',pathMatch:'full'},
+    // posts routes
     {path:'posts',component:PostsComponent},
     {path:'posts/:postId',component:PostComponent},
+    // Meme routes
     {path:'memes',component:MemesComponent},
+    {path:'memes/:memeId',component:MemeComponent},
+
+
   ]},
 
   //########## user routes ##########

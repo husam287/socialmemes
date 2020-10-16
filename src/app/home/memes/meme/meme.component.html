@@ -1,0 +1,84 @@
+<app-error-message [errorMessage]="errorMessage"></app-error-message>
+
+
+<div *ngIf="memeData" class="row  postSeparate">
+    <section class="col-12 card position-relative bg-grey pt-2 post">
+
+        <!-- ##### Creator Part ##### -->
+        <!-- Creator Image -->
+        <img class="rounded-circle adjustImagePosition reddyShadow " [src]="memeData.creator.image"
+            style="cursor: pointer;" [routerLink]="['/users',memeData.creator._id]" alt="post creator image"
+            width="70px" height="70px">
+        <!-- Creator Name -->
+        <div class=" adjustNamePosition">
+            <a class="h5 pt-2 pl-3 color-red-light" style="cursor: pointer;"
+                [routerLink]="['/users',memeData.creator._id]">{{memeData.creator.name}}
+            </a>
+
+        </div>
+
+        <!-- ##### meme list ##### -->
+        <app-meme-list [memeId]="memeData._id" class="position-absolute" style="right: 0rem; top: 0.2rem;">
+        </app-meme-list>
+
+
+        <!-- ##### Time of the Post #####-->
+        <p class="card-text  mb-0 text-center"><small class="text-muted normalText">created {{memeData.timeOfMeme}}
+                ago</small></p>
+
+
+        <!--##### Clickable Post's Image to open modal #####-->
+        <a *ngIf="memeData.image" data-toggle="modal" [attr.data-target]="'#id'+ memeData._id" style="cursor: pointer;">
+            <!-- Image of the meme -->
+            <img class="card-img-bottom p-2" [src]="memeData.image" alt="post photo">
+        </a>
+        <!--photo Modal-->
+        <div class="modal fade" [attr.id]="'id'+memeData._id" tabindex="-1" aria-labelledby="openPhotoLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <!-- close button -->
+                        <button #modalCloseButton type="button" id="close1" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <!-- Opened Image -->
+                        <img class="card-img-bottom" [src]="memeData.image? memeData.image:''" alt="post photo"
+                            style="height: auto;width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ##### Reacts part ##### -->
+        <div class="row mt-3">
+            <!-- like part -->
+            <div class="col-4 mb-2 text-center">
+                <div class="color-red-dark">
+                    Like [ {{memeData.reacts.length}} ]
+                </div>
+                <img src="assets/photos/true.png" (click)="onLike(memeData._id)" [ngClass]="like? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
+                    alt="true-icon" style="cursor: pointer;">
+            </div>
+            <!-- haha part -->
+            <div class="col-4 mb-2 text-center">
+                <div class="color-red-dark">
+                    Haha [ {{memeData.reacts.length}} ]
+                </div>
+                <img src="assets/photos/haha.png" (click)="onHaha(memeData._id)" [ngClass]="haha? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
+                    alt="haha-icon" style="cursor: pointer;">
+            </div>
+            <!-- angry part -->
+            <div class="col-4 mb-2 text-center">
+                <div class="color-red-dark d-">
+                    Angry [ {{memeData.reacts.length}} ]
+                </div>
+                <img src="assets/photos/angry.png" (click)="onAngry(memeData._id)" [ngClass]="angry? 'reddyShadow':''" class="rounded-circle p-1" width="100px" height="100px"
+                    alt="angry-icon" style="cursor: pointer;">
+            </div>
+
+        </div>
+    </section>
+</div>

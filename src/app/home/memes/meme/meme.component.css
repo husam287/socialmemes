@@ -1,0 +1,50 @@
+.adjustImagePosition{
+    position: absolute;
+    top: -0.5rem;
+    left: -2rem;
+}
+
+.adjustNamePosition{
+    position: relative;
+    left:1rem;
+    top: 0.6rem;
+}
+
+
+.card-body{
+    margin-top:15px
+}
+
+.showComments{
+    display: block;
+
+}
+.hideComments{
+    display:none;
+
+}
+.postSeparate{
+    margin-top: 12vh;
+}
+
+.card-body{
+    margin-top: 1rem !important;
+}
+
+@media only screen and (max-width:768px){
+
+    .adjustNamePosition{
+        position: relative;
+        left:-1.5rem
+
+    }
+    .adjustImagePosition{
+        position: absolute;
+        top: -3.5rem;
+        left: 1.5rem;
+    }
+    .card-body{
+        margin-top:0px
+    }
+} 
+

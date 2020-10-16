@@ -34,6 +34,9 @@ import { UserSettingComponent } from './users-component/user-setting/user-settin
 import { DeleteAccountComponent } from './users-component/user-setting/delete-account/delete-account.component';
 import { ChangePasswordComponent } from './users-component/user-setting/change-password/change-password.component';
 import { SuccessMessageComponent } from './shared/success-message/success-message.component';
+import { MemeComponent } from './home/memes/meme/meme.component';
+import { ReactsComponent } from './home/memes/meme/reacts/reacts.component';
+import { MemeListComponent } from './home/memes/meme/meme-list/meme-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { SuccessMessageComponent } from './shared/success-message/success-messag
     DeleteAccountComponent,
     ChangePasswordComponent,
     SuccessMessageComponent,
+    MemeComponent,
+    ReactsComponent,
+    MemeListComponent,
   ],
   imports: [
     BrowserModule,

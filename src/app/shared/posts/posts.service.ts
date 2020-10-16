@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 import { Post } from './post.model';
 import { HttpClient } from '@angular/common/http';
 import { domainName } from '../domain';
-import { ThrowStmt } from '@angular/compiler';
 import { tap } from 'rxjs/operators';
 
 @Injectable({

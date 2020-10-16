@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shared/posts/posts.service';
 import { take, delay } from 'rxjs/operators';
+import { Meme } from 'src/app/shared/memes/meme.model';
+import { MemesService } from 'src/app/shared/memes/memes.service';
 
 @Component({
   selector: 'app-memes',
@@ -9,9 +11,20 @@ import { take, delay } from 'rxjs/operators';
 })
 export class MemesComponent implements OnInit {
 
-  constructor(private posts:PostsService) { }
+  errorMessage:string;
+  memes:Meme[];
+
+  constructor(private memesService:MemesService) { }
 
   ngOnInit(): void {
+    // ##### initialize memes array ######
+    this.memesService.getMemes().toPromise()
+    .then(memes=>{
+      this.memes=memes;
+    })
+    .catch(err=>{
+      this.errorMessage=err;
+    })
   }
 
 
