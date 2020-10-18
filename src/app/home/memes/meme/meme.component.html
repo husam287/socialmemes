@@ -96,7 +96,7 @@
 
 
 <!--photo Modal-->
-<div class="modal fade" [attr.id]="'id'+memeData._id" tabindex="-1"
+<div class="modal fade" [attr.id]="memeData? 'id'+memeData._id:''" tabindex="-1"
 aria-labelledby="openPhotoLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
@@ -106,7 +106,7 @@ aria-labelledby="openPhotoLabel" aria-hidden="true">
                 <span aria-hidden="true">&times;</span>
             </button>
             <!-- Opened Image -->
-            <img class="card-img-bottom" [src]="memeData.image? memeData.image:''" alt="post photo"
+            <img class="card-img-bottom" [src]="memeData? memeData.image:''" alt="post photo"
                 style="height: auto;width: 100%;">
         </div>
     </div>
@@ -115,7 +115,7 @@ aria-labelledby="openPhotoLabel" aria-hidden="true">
 
 
 <!-- ##### like list model #####-->
-<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'likelist'+memeData._id" tabindex="-1"
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="memeData? 'likelist'+memeData._id:''" tabindex="-1"
     aria-labelledby="openPhotoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -138,7 +138,7 @@ aria-labelledby="openPhotoLabel" aria-hidden="true">
 </div>
 
 <!-- ##### haha list model #####-->
-<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'hahalist'+memeData._id" tabindex="-1"
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="memeData? 'hahalist'+memeData._id:''" tabindex="-1"
     aria-labelledby="openPhotoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -161,7 +161,7 @@ aria-labelledby="openPhotoLabel" aria-hidden="true">
 </div>
 
 <!-- ##### angry list model #####-->
-<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="'angrylist'+memeData._id" tabindex="-1"
+<div class="modal fade" style="height: 100vh; width: 100vw;" [attr.id]="memeData?'angrylist'+memeData._id:''" tabindex="-1"
     aria-labelledby="openPhotoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

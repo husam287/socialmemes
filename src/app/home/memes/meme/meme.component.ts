@@ -13,11 +13,14 @@ import { MemesService } from '../../../shared/memes/memes.service';
 export class MemeComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalCloseButton') modalCloseButton: ElementRef; //reference to close button in the photo modal
+
   @ViewChild('LikeReactListClose') LikeReactListClose: ElementRef;
   @ViewChild('HahaReactListClose') HahaReactListClose: ElementRef;
   @ViewChild('AngryReactListClose') AngryReactListClose: ElementRef;
 
-  
+
+
+
   errorMessage: string; // Error Message
 
   //meme and user Data
@@ -69,6 +72,8 @@ export class MemeComponent implements OnInit, OnDestroy {
         })
         .catch(err => {
           alert(err.message);
+          this.likeReact.clicked = !this.likeReact.clicked;
+
         })
     }
     else {
@@ -82,6 +87,10 @@ export class MemeComponent implements OnInit, OnDestroy {
       this.likeReact.clicked = false;
       this.angryReact.clicked = false;
 
+      //##### Audio Effect #####
+      let audio = new Audio('assets/haha.mp3');
+      audio.play();
+
       this.memesService.reactHaha(this.memeData._id).toPromise()
         .then(result => {
           console.log(result.message);
@@ -91,6 +100,8 @@ export class MemeComponent implements OnInit, OnDestroy {
         })
         .catch(err => {
           alert(err.message);
+          this.hahaReact.clicked = !this.hahaReact.clicked;
+
         })
     }
     else {
@@ -112,6 +123,7 @@ export class MemeComponent implements OnInit, OnDestroy {
 
         })
         .catch(err => {
+          this.angryReact.clicked = !this.angryReact.clicked;
           alert(err.message);
         })
     }
@@ -119,7 +131,7 @@ export class MemeComponent implements OnInit, OnDestroy {
       this.removeReact();
     }
   }
-  
+
   ngOnDestroy() {
     this.modalCloseButton.nativeElement.click();
     this.LikeReactListClose.nativeElement.click();
